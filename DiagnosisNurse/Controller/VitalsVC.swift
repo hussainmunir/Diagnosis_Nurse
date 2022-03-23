@@ -514,7 +514,7 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
 //            "respiratory" : respiratoryRateTextField.text ?? ""
 //            
 //        ]
-//        self.navigationController?.pushViewController(SystemReviewVC(), animated: true)
+        self.navigationController?.pushViewController(DiagnosticStudiesVC(), animated: true)
     }
     
    

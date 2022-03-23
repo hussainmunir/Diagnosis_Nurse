@@ -76,14 +76,9 @@ class WaitingListVC : UIViewController {
         collectionView.delegate = self
         setUpLayout()
 
-        getList()
+//        getWaiting()
         
     }
-    
-    func getList() {
-            
-       
-        }
         
     
     func setUpLayout() {
@@ -106,20 +101,88 @@ class WaitingListVC : UIViewController {
     
     }
     
+    func getWaiting() {
+        guard let url = URL(string: "\(K.mainURL)/api/v1/doctors/getCombineWaitingList") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+//        request.addValue(getToken, forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request){data,resp,err in
+            if let error = err {
+                print("******** error *****\(error.localizedDescription)")
+            }else{
+                guard let data = data else { return }
+                print(String(data: data, encoding: .utf8)!)
+
+                let jsonData = try? JSONDecoder().decode(WaitingAllModel.self, from: data)
+//                print(jsonData)
+
+                if jsonData?.data != nil {
+                    
+                    waitingListCommbineArray = (jsonData?.data)!.reversed()
+                    
+              
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                                
+                                
+                        for v in waitingListCommbineArray {
+                            if v.waitingListType == "problem" {
+                            self.getPatientInfo(pid: v.problem!.patientID!)
+                            }
+
+                        }
+                    }
+                  
+                }
+            }
+            
+        }.resume()
+    }
+
+    // MARK: GET patient name
+    
+    func getPatientInfo(pid:String){
+        
+        guard let url = URL(string: "\(K.mainURL)/api/v1/patients/getPatientById/\(pid)") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("Application/json", forHTTPHeaderField: "Content-Type")
+//        request.addValue(getToken, forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request){data,resp,err in
+            if let error = err {
+                print("******** error *****\(error.localizedDescription)")
+            }else{
+                guard let data = data else { return }
+//                print(data)
+                let jsonData = try? JSONDecoder().decode(PatientInfoModel.self, from: data)
+//                print("json data-----------",jsonData!)
+                global_systemReview_object = jsonData?.data?.reviewSystem
+                global_patient_allergies = (jsonData?.data?.allergies)!
+             }
+            
+        }.resume()
+    }
+    
     
 }
 
 extension WaitingListVC : UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+
+//        return waitingListProblem.count
         return 4
+            
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! WaitingListCell
+        
+//        cell.nameLabel.text = waitingListProblem[indexPath.item].patientName
         cell.nameLabel.text = "Patient"
         cell.selectRoomTextField.placeholder = "Select Room"
-
+        cell.castRoomTextField.placeholder = "Select Cast Room"
         
         
         cell.backgroundColor = Color2
@@ -136,8 +199,10 @@ extension WaitingListVC : UICollectionViewDataSource,UICollectionViewDelegateFlo
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-    
-        self.navigationController?.pushViewController(VitalsVC(), animated: true)
+        
+        hpi_review_array_index_path = indexPath.item
+
+        self.navigationController?.pushViewController(PatientReviewVC(), animated: true)
 
     }
    

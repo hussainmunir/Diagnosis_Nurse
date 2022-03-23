@@ -20,7 +20,14 @@
 		248564B227E8598C004F5049 /* WaitingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564B127E8598C004F5049 /* WaitingListCell.swift */; };
 		248564B427E8A8E6004F5049 /* VitalsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564B327E8A8E6004F5049 /* VitalsVC.swift */; };
 		248564B627E8A9FC004F5049 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564B527E8A9FC004F5049 /* TextField.swift */; };
-		248564BB27E8AD81004F5049 /* OrderingX-RaysVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564BA27E8AD81004F5049 /* OrderingX-RaysVC.swift */; };
+		248564BB27E8AD81004F5049 /* DiagnosticStudiesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564BA27E8AD81004F5049 /* DiagnosticStudiesVC.swift */; };
+		248564BD27E9D3B4004F5049 /* PatientReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564BC27E9D3B4004F5049 /* PatientReviewVC.swift */; };
+		248564BF27EB02FE004F5049 /* NurseDashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564BE27EB02FE004F5049 /* NurseDashboardVC.swift */; };
+		248564C127EB1FB4004F5049 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564C027EB1FB4004F5049 /* Globals.swift */; };
+		248564C327EB207C004F5049 /* WaitingListAllModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564C227EB207C004F5049 /* WaitingListAllModel.swift */; };
+		248564C527EB217A004F5049 /* PatientInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564C427EB217A004F5049 /* PatientInfoModel.swift */; };
+		248564C727EB25E0004F5049 /* HPIReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564C627EB25E0004F5049 /* HPIReviewCell.swift */; };
+		248564C927EB265C004F5049 /* HPIReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564C827EB265C004F5049 /* HPIReviewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,7 +46,14 @@
 		248564B127E8598C004F5049 /* WaitingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingListCell.swift; sourceTree = "<group>"; };
 		248564B327E8A8E6004F5049 /* VitalsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VitalsVC.swift; sourceTree = "<group>"; };
 		248564B527E8A9FC004F5049 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
-		248564BA27E8AD81004F5049 /* OrderingX-RaysVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OrderingX-RaysVC.swift"; sourceTree = "<group>"; };
+		248564BA27E8AD81004F5049 /* DiagnosticStudiesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticStudiesVC.swift; sourceTree = "<group>"; };
+		248564BC27E9D3B4004F5049 /* PatientReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientReviewVC.swift; sourceTree = "<group>"; };
+		248564BE27EB02FE004F5049 /* NurseDashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NurseDashboardVC.swift; sourceTree = "<group>"; };
+		248564C027EB1FB4004F5049 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		248564C227EB207C004F5049 /* WaitingListAllModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingListAllModel.swift; sourceTree = "<group>"; };
+		248564C427EB217A004F5049 /* PatientInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoModel.swift; sourceTree = "<group>"; };
+		248564C627EB25E0004F5049 /* HPIReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPIReviewCell.swift; sourceTree = "<group>"; };
+		248564C827EB265C004F5049 /* HPIReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPIReviewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +88,7 @@
 			children = (
 				2485649527E850D0004F5049 /* AppDelegate.swift */,
 				2485649727E850D0004F5049 /* SceneDelegate.swift */,
+				248564CA27EB266B004F5049 /* Model */,
 				248564B727E8AB8D004F5049 /* Controller */,
 				248564B927E8ABC2004F5049 /* View */,
 				248564B827E8ABA9004F5049 /* Helper */,
@@ -90,9 +105,11 @@
 			children = (
 				2485649927E850D0004F5049 /* ViewController.swift */,
 				248564AB27E855E5004F5049 /* Login.swift */,
+				248564BE27EB02FE004F5049 /* NurseDashboardVC.swift */,
 				248564AF27E858EB004F5049 /* WaitingListVC.swift */,
+				248564BC27E9D3B4004F5049 /* PatientReviewVC.swift */,
 				248564B327E8A8E6004F5049 /* VitalsVC.swift */,
-				248564BA27E8AD81004F5049 /* OrderingX-RaysVC.swift */,
+				248564BA27E8AD81004F5049 /* DiagnosticStudiesVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -103,6 +120,7 @@
 				248564AD27E856B5004F5049 /* Alert.swift */,
 				248564B527E8A9FC004F5049 /* TextField.swift */,
 				248564A927E8533E004F5049 /* ThemeColor.swift */,
+				248564C027EB1FB4004F5049 /* Globals.swift */,
 			);
 			path = Helper;
 			sourceTree = "<group>";
@@ -111,8 +129,19 @@
 			isa = PBXGroup;
 			children = (
 				248564B127E8598C004F5049 /* WaitingListCell.swift */,
+				248564C627EB25E0004F5049 /* HPIReviewCell.swift */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		248564CA27EB266B004F5049 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				248564C227EB207C004F5049 /* WaitingListAllModel.swift */,
+				248564C427EB217A004F5049 /* PatientInfoModel.swift */,
+				248564C827EB265C004F5049 /* HPIReviewModel.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -189,14 +218,21 @@
 				248564B027E858EB004F5049 /* WaitingListVC.swift in Sources */,
 				248564AE27E856B5004F5049 /* Alert.swift in Sources */,
 				2485649A27E850D0004F5049 /* ViewController.swift in Sources */,
+				248564BF27EB02FE004F5049 /* NurseDashboardVC.swift in Sources */,
 				248564B627E8A9FC004F5049 /* TextField.swift in Sources */,
+				248564C527EB217A004F5049 /* PatientInfoModel.swift in Sources */,
+				248564BD27E9D3B4004F5049 /* PatientReviewVC.swift in Sources */,
 				248564AC27E855E6004F5049 /* Login.swift in Sources */,
+				248564C327EB207C004F5049 /* WaitingListAllModel.swift in Sources */,
+				248564C727EB25E0004F5049 /* HPIReviewCell.swift in Sources */,
 				248564B427E8A8E6004F5049 /* VitalsVC.swift in Sources */,
-				248564BB27E8AD81004F5049 /* OrderingX-RaysVC.swift in Sources */,
+				248564BB27E8AD81004F5049 /* DiagnosticStudiesVC.swift in Sources */,
 				248564AA27E8533E004F5049 /* ThemeColor.swift in Sources */,
 				2485649627E850D0004F5049 /* AppDelegate.swift in Sources */,
 				2485649827E850D0004F5049 /* SceneDelegate.swift in Sources */,
+				248564C127EB1FB4004F5049 /* Globals.swift in Sources */,
 				248564B227E8598C004F5049 /* WaitingListCell.swift in Sources */,
+				248564C927EB265C004F5049 /* HPIReviewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -232,7 +232,7 @@ class Login: UIViewController ,UITextFieldDelegate{
     //---sign in Button Action
     @objc func signInBtnAction() {
         
-        let waitingListVC = WaitingListVC()
+        let waitingListVC = NurseDashboardVC()
              let nav = UINavigationController(rootViewController: waitingListVC)
              nav.modalPresentationStyle = .fullScreen
              self.present(nav, animated: true, completion: nil)
