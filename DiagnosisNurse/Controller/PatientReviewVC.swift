@@ -60,7 +60,7 @@ class PatientReviewVC: UIViewController {
         setupConstraint()
         collectionView.dataSource = self
         collectionView.delegate = self
-//        fillarray()
+        fillArray()
        
    }
     
@@ -87,7 +87,7 @@ class PatientReviewVC: UIViewController {
     }
     
     
-    func fillarray(){
+    func fillArray(){
            
         var startDateArray = [String]()
         let severityArray = [String]()

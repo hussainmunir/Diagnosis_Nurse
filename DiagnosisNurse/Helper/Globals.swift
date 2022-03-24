@@ -13,6 +13,11 @@ struct K {
 static let mainURL = "http://ec2-44-202-39-201.compute-1.amazonaws.com:5000"
 }
 
+var authToken : String = ""
+var tokencheck = false
+var getToken = String()
+
+var patient_ID = String()
 
 var waitingListCommbineArray = [WaitingAllCombineDataModel]()
 

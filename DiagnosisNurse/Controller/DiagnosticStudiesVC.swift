@@ -161,7 +161,7 @@ class DiagnosticStudiesVC: UIViewController {
         backBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         view.addSubview(blueView)
-        blueView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 60).isActive = true
+        blueView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 30).isActive = true
         blueView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         blueView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
         blueView.bottomAnchor.constraint(equalTo:bottomView.topAnchor ).isActive = true

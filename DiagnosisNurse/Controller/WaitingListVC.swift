@@ -76,7 +76,7 @@ class WaitingListVC : UIViewController {
         collectionView.delegate = self
         setUpLayout()
 
-//        getWaiting()
+        getWaiting()
         
     }
         
@@ -106,7 +106,7 @@ class WaitingListVC : UIViewController {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-//        request.addValue(getToken, forHTTPHeaderField: "Authorization")
+        request.addValue(getToken, forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: request){data,resp,err in
             if let error = err {
                 print("******** error *****\(error.localizedDescription)")
@@ -148,7 +148,7 @@ class WaitingListVC : UIViewController {
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("Application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue(getToken, forHTTPHeaderField: "Authorization")
+        request.addValue(getToken, forHTTPHeaderField: "Authorization")
         URLSession.shared.dataTask(with: request){data,resp,err in
             if let error = err {
                 print("******** error *****\(error.localizedDescription)")
@@ -171,16 +171,50 @@ extension WaitingListVC : UICollectionViewDataSource,UICollectionViewDelegateFlo
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-//        return waitingListProblem.count
-        return 4
+        return waitingListCommbineArray.count
+//        return 4
             
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! WaitingListCell
         
-//        cell.nameLabel.text = waitingListProblem[indexPath.item].patientName
-        cell.nameLabel.text = "Patient"
+//        cell.nameLabel.text = "Patient"
+        if waitingListCommbineArray[indexPath.item].waitingListType == "problem" {
+            if waitingListCommbineArray[indexPath.item].problem!.patientName ?? "" != "" {
+                cell.nameLabel.text = "\(waitingListCommbineArray[indexPath.item].problem!.patientName!) (New Problem)"
+                
+//
+
+                }
+                else {
+                    cell.nameLabel.text = "Patient is in waiting room"
+                }
+        }
+        if waitingListCommbineArray[indexPath.item].waitingListType == "followUp" {
+            if waitingListCommbineArray[indexPath.item].followUp!.patientName ?? "" != "" {
+                cell.nameLabel.text = "\(waitingListCommbineArray[indexPath.item].followUp!.patientName!) (Follow-Up)"
+                }
+                else{
+                    cell.nameLabel.text = "Patient is in waiting room"
+                }
+        }
+
+        if waitingListCommbineArray[indexPath.item].waitingListType == "operation" {
+            if waitingListCommbineArray[indexPath.item].postOp!.patientName ?? "" != "" {
+                cell.nameLabel.text = "\(waitingListCommbineArray[indexPath.item].postOp!.patientName!) (Operation)"
+            
+
+                }
+                else{
+                    cell.nameLabel.text = "Patient is in waiting room"
+                }
+        }
+        
+        
+        
+        
+        
         cell.selectRoomTextField.placeholder = "Select Room"
         cell.castRoomTextField.placeholder = "Select Cast Room"
         
@@ -202,8 +236,10 @@ extension WaitingListVC : UICollectionViewDataSource,UICollectionViewDelegateFlo
         
         hpi_review_array_index_path = indexPath.item
 
+        if waitingListCommbineArray[indexPath.item].waitingListType == "problem" {
+            patient_ID = waitingListCommbineArray[indexPath.item].problem!.patientID!
         self.navigationController?.pushViewController(PatientReviewVC(), animated: true)
-
+        }
     }
    
     

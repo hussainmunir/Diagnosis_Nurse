@@ -28,6 +28,8 @@
 		248564C527EB217A004F5049 /* PatientInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564C427EB217A004F5049 /* PatientInfoModel.swift */; };
 		248564C727EB25E0004F5049 /* HPIReviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564C627EB25E0004F5049 /* HPIReviewCell.swift */; };
 		248564C927EB265C004F5049 /* HPIReviewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564C827EB265C004F5049 /* HPIReviewModel.swift */; };
+		248564CC27EC5B78004F5049 /* UserAuthModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564CB27EC5B78004F5049 /* UserAuthModel.swift */; };
+		248564CE27EC72FB004F5049 /* NurseInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564CD27EC72FB004F5049 /* NurseInfoModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		248564C427EB217A004F5049 /* PatientInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientInfoModel.swift; sourceTree = "<group>"; };
 		248564C627EB25E0004F5049 /* HPIReviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPIReviewCell.swift; sourceTree = "<group>"; };
 		248564C827EB265C004F5049 /* HPIReviewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HPIReviewModel.swift; sourceTree = "<group>"; };
+		248564CB27EC5B78004F5049 /* UserAuthModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAuthModel.swift; sourceTree = "<group>"; };
+		248564CD27EC72FB004F5049 /* NurseInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NurseInfoModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +141,8 @@
 		248564CA27EB266B004F5049 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				248564CB27EC5B78004F5049 /* UserAuthModel.swift */,
+				248564CD27EC72FB004F5049 /* NurseInfoModel.swift */,
 				248564C227EB207C004F5049 /* WaitingListAllModel.swift */,
 				248564C427EB217A004F5049 /* PatientInfoModel.swift */,
 				248564C827EB265C004F5049 /* HPIReviewModel.swift */,
@@ -231,6 +237,8 @@
 				2485649627E850D0004F5049 /* AppDelegate.swift in Sources */,
 				2485649827E850D0004F5049 /* SceneDelegate.swift in Sources */,
 				248564C127EB1FB4004F5049 /* Globals.swift in Sources */,
+				248564CC27EC5B78004F5049 /* UserAuthModel.swift in Sources */,
+				248564CE27EC72FB004F5049 /* NurseInfoModel.swift in Sources */,
 				248564B227E8598C004F5049 /* WaitingListCell.swift in Sources */,
 				248564C927EB265C004F5049 /* HPIReviewModel.swift in Sources */,
 			);

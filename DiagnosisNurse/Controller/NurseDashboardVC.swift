@@ -134,16 +134,17 @@ class NurseDashboardVC: UIViewController {
         
         setupLayouts()
         
-//        if tokencheck == true {
-//            UserDefaults.standard.setValue(authToken, forKeyPath: "token")
-//            getToken = UserDefaults.standard.string(forKey: "token")!
-//        }else{
-//            if authToken == ""{
-//                getToken = UserDefaults.standard.string(forKey: "token")!
-//            }else{
-//                getToken = authToken
-//            }
-//        }
+        if tokencheck == true {
+            UserDefaults.standard.setValue(authToken, forKeyPath: "token")
+            getToken = UserDefaults.standard.string(forKey: "token")!
+        }else{
+            if authToken == ""{
+                getToken = UserDefaults.standard.string(forKey: "token")!
+            }else{
+                getToken = authToken
+            }
+        }
+        getDoctorInfo()
                 
     }
     override func viewWillLayoutSubviews() {
@@ -151,7 +152,41 @@ class NurseDashboardVC: UIViewController {
         self.tabBarController?.tabBar.isHidden = false
     }
     
-  
+    func getDoctorInfo(){
+        guard let url = URL(string: "\(K.mainURL)/api/v1/doctors/getDr") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue(getToken, forHTTPHeaderField: "authorization")
+        print(getToken)
+        URLSession.shared.dataTask(with: request){data,resp,err in
+            if let error = err {
+                print("******** error *****\(error.localizedDescription)")
+            }else{
+                guard let data = data else { return }
+                do{
+                    let jsonData = try JSONDecoder().decode(DoctorInfoModel.self, from: data)
+                    print(jsonData)
+                   if jsonData != nil {
+                      
+                        DispatchQueue.main.async {
+                          
+                            
+                        }
+                    }else{
+                        DispatchQueue.main.async {
+                            alertFunc(vc: self, message: "Sorry! No response from server")
+                        }
+                    }
+                }catch(let e){
+                    print(e)
+                }
+                   
+            }
+            
+        }.resume()
+    }
+    
     
     private func setupLayouts() {
         let topView = UIView()

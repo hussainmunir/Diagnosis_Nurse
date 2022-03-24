@@ -118,6 +118,8 @@ class Login: UIViewController ,UITextFieldDelegate{
         return button
     }()
     
+    var authObj:userAuth? = nil
+    
     // MARK: VIEW DID LOAD {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -229,14 +231,94 @@ class Login: UIViewController ,UITextFieldDelegate{
         
     }
     
-    //---sign in Button Action
-    @objc func signInBtnAction() {
+    // MARK: USER AUTHENTICATION {
         
-        let waitingListVC = NurseDashboardVC()
-             let nav = UINavigationController(rootViewController: waitingListVC)
-             nav.modalPresentationStyle = .fullScreen
-             self.present(nav, animated: true, completion: nil)
+        @objc private func authDoctor() {
+            let params = [
+                "email": emailTextField.text!,
+                "password": passwordTextField.text!
+            ]
+    guard  let url = URL(string: "\(K.mainURL)/api/v1/doctors/login") else { return }
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+            request.httpBody = try? JSONSerialization.data(withJSONObject: params, options: [])
+            URLSession.shared.dataTask(with: request){data,resp,err in
+                DispatchQueue.main.sync {
+                    self.activityIndicatorView.stopAnimating()
+                    self.VW_overlay.isHidden = true
+                    
+                    // ec2-18-222-128-146.us-east-2.compute.amazonaws.com
+                }
+                
+                if let error = err {
+                    DispatchQueue.main.async {
+                        alertFunc(vc: self, message: error.localizedDescription)
+                    }
+                }else{
+                    guard let data = data else { return }
+                    let jsonData = try? JSONDecoder().decode(userAuth.self, from: data)
+//                    print(jsonData)
+                  if jsonData != nil {
+
+                    if  jsonData!.token == nil {
+                          DispatchQueue.main.async {
+                              alertFunc(vc: self, message: "Login Failed")
+                          }
+                      }else{
+                        DispatchQueue.main.sync {
+                            authToken = jsonData!.token!
+                        }
+                          DispatchQueue.main.sync {
+                              let waitingListVC = NurseDashboardVC()
+                                   let nav = UINavigationController(rootViewController: waitingListVC)
+                                   nav.modalPresentationStyle = .fullScreen
+                                   self.present(nav, animated: true, completion: nil)
+                          }
+                      }
+                  }else{
+                      DispatchQueue.main.async {
+                          alertFunc(vc: self, message: "Sorry! found nil")
+                      }
+                  }
+                  
+
+                }
+                
+            }.resume()
+           
+        }
         
+
+        
+        // MARK:---sign in Button Action
+        @objc func signInBtnAction() {
+            if emailTextField.text == "" || passwordTextField.text == ""{
+                alertFunc(vc: self, message: "Must fill all fields")
+            }else{
+                VW_overlay = UIView(frame: UIScreen.main.bounds)
+                VW_overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+                activityIndicatorView = UIActivityIndicatorView(style: .large)
+                activityIndicatorView.color = .white
+                activityIndicatorView.frame = CGRect(x: 0, y: 0, width: activityIndicatorView.bounds.size.width, height: activityIndicatorView.bounds.size.height)
+                activityIndicatorView.center = VW_overlay.center
+                VW_overlay.addSubview(activityIndicatorView)
+                VW_overlay.center = view.center
+                view.addSubview(VW_overlay)
+                activityIndicatorView.startAnimating()
+                perform(#selector(self.authDoctor), with: activityIndicatorView, afterDelay: 0.01)
+            }
+           
+        }
+    
+//    //---sign in Button Action
+//    @objc func signInBtnAction() {
+//
+//        let waitingListVC = NurseDashboardVC()
+//             let nav = UINavigationController(rootViewController: waitingListVC)
+//             nav.modalPresentationStyle = .fullScreen
+//             self.present(nav, animated: true, completion: nil)
+//
 
 //        if emailTextField.text == "" || passwordTextField.text == "" {
 //            alertFunc(vc: self, message: "Must fill all fields")
@@ -257,7 +339,7 @@ class Login: UIViewController ,UITextFieldDelegate{
 //            perform(#selector(self.authPatient), with: activityIndicatorView, afterDelay: 0.01)
 //        }
         
-    }
+//    }
     //---sign up button action
     @objc func signUpBtnAction() {
         //        let signUpVC = SignUpFirstVC()
