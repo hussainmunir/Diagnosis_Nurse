@@ -17,6 +17,11 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
     var weight = (0...600).map { String($0) }
     var heartRate = (0...400).map { String($0) }
     
+    var bp1 = (0...300).map { String($0) }
+    var bp2 = (0...200).map { String($0) }
+    
+    let numberOfComponents = 2
+
     
     static var heightMetricImperial = {
         return (12...120).map {
@@ -36,6 +41,7 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
     var weightPicker = UIPickerView()
     var heightPicker = UIPickerView()
     var heartRatePicker = UIPickerView()
+    var bpPicker = UIPickerView()
     var respiratoryRatePicker = UIPickerView()
     
     let heightLabel : UILabel = {
@@ -196,6 +202,7 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         weightTextField.inputView = weightPicker
         heightTextField.inputView = heightPicker
         heartRateTextField.inputView = heartRatePicker
+        bloodPressureTextField.inputView = bpPicker
         respiratoryRateTextField.inputView = respiratoryRatePicker
         
 
@@ -208,11 +215,14 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         heartRatePicker.dataSource = self
         respiratoryRatePicker.delegate = self
         respiratoryRatePicker.dataSource = self
+        bpPicker.delegate = self
+        bpPicker.dataSource = self
         
         weightPicker.tag = 1
         heightPicker.tag = 2
         heartRatePicker.tag = 3
         respiratoryRatePicker.tag = 4
+        bpPicker.tag = 5
         
 //        addDoneButtonOnKeyboard()
 //        heightMetricImperial = {
@@ -224,6 +234,10 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         weightPicker.selectRow(130, inComponent: 0, animated: true)
         respiratoryRatePicker.selectRow(14, inComponent: 0, animated: true)
         heartRatePicker.selectRow(70, inComponent: 0, animated: true)
+        bpPicker.selectRow(120, inComponent: 0, animated: true)
+        bpPicker.selectRow(80, inComponent: 1, animated: true)
+        
+
                
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
 
@@ -252,13 +266,21 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         toolbarHeartRate.setItems([flexSpace, barbtnHeartRate], animated: true)
         heartRateTextField.inputAccessoryView = toolbarHeartRate
         
-        // toolbar HeartRate
+        // toolbar RespiratoryRate
         let toolbarRespiratoryRate = UIToolbar()
         toolbarRespiratoryRate.sizeToFit()
         // bar button
         let barbtnRespiratoryRate = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressRespiratoryRate))
         toolbarRespiratoryRate.setItems([flexSpace, barbtnRespiratoryRate], animated: true)
         respiratoryRateTextField.inputAccessoryView = toolbarRespiratoryRate
+        
+        // toolbar bloodPressure
+        let toolbarBP = UIToolbar()
+        toolbarBP.sizeToFit()
+        // bar button
+        let barbtnBP = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressBP))
+        toolbarBP.setItems([flexSpace, barbtnBP], animated: true)
+        bloodPressureTextField.inputAccessoryView = toolbarBP
         
                //Looks for single or multiple taps.
                let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIInputViewController.dismissKeyboard))
@@ -306,6 +328,16 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
 
      }
+    
+    @objc func donePressBP(){
+        let bp1Index = bpPicker.selectedRow(inComponent: 0)
+        let bp2Index = bpPicker.selectedRow(inComponent: 1)
+        bloodPressureTextField.text = "\(bp1[bp1Index]) / \(bp2[bp2Index])"
+        self.view.endEditing(true)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+
+    }
+
            
            @objc func dismissKeyboard() {
                NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -516,14 +548,16 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
 //        ]
         self.navigationController?.pushViewController(DiagnosticStudiesVC(), animated: true)
     }
-    
-   
-
+ 
 }
 
 extension VitalsVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        if pickerView == bpPicker {
+            return numberOfComponents
+        } else {
         return 1
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
@@ -532,12 +566,16 @@ extension VitalsVC: UIPickerViewDelegate, UIPickerViewDataSource {
             return weight.count
         case 2:
             return VitalsVC.heightMetricImperial.count
-//            return height.count
-
         case 3:
             return heartRate.count
         case 4:
             return respiratoryRate.count
+        case 5:
+            if component == 0 {
+                return bp1.count
+            }else if component == 1 {
+                return bp2.count
+            }else { return 1 }
         default:
             return 1
         }
@@ -555,6 +593,14 @@ extension VitalsVC: UIPickerViewDelegate, UIPickerViewDataSource {
             return heartRate[row]
         case 4:
             return respiratoryRate[row]
+        case 5:
+            if component == 0 {
+                return (bp1[row])
+            }else if component == 1 {
+                return (bp2[row])
+            } else {
+                return ""
+            }
         default:
             return "error"
         }
@@ -578,6 +624,10 @@ extension VitalsVC: UIPickerViewDelegate, UIPickerViewDataSource {
             heartRateTextField.text = heartRate[row]
         case 4:
             respiratoryRateTextField.text = respiratoryRate[row]
+        case 5:
+            let bp1Index = bpPicker.selectedRow(inComponent: 0)
+            let bp2Index = bpPicker.selectedRow(inComponent: 1)
+            bloodPressureTextField.text = "\(bp1[bp1Index]) / \(bp2[bp2Index])"
         default:
                 return
         }

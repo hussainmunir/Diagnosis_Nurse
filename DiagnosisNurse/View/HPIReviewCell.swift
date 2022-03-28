@@ -22,9 +22,9 @@ class PatientHpiReviewCell : UICollectionViewCell {
     }()
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpLayouts( )
+        setUpLayouts()
     }
-    private func setUpLayouts( ){
+    private func setUpLayouts(){
         contentView.addSubview(nameLabel)
         nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true

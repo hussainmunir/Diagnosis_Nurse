@@ -178,57 +178,73 @@ extension WaitingListVC : UICollectionViewDataSource,UICollectionViewDelegateFlo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! WaitingListCell
-        
-//        cell.nameLabel.text = "Patient"
         if waitingListCommbineArray[indexPath.item].waitingListType == "problem" {
             if waitingListCommbineArray[indexPath.item].problem!.patientName ?? "" != "" {
-                cell.nameLabel.text = "\(waitingListCommbineArray[indexPath.item].problem!.patientName!) (New Problem)"
+                cell.timeLabel.text = waitingListCommbineArray[indexPath.item].problem!.createdAt!
+                cell.nameLabel.text = "\(waitingListCommbineArray[indexPath.item].problem!.patientName!) is in waiting room"
+                cell.typeLabel.text = "Visit Type: New Problem"
                 
-//
+//                cell.nameLabel.text = "New Problem - \(waitingListCommbineArray[indexPath.item].problem!.patientName!) - \n\(waitingListCommbineArray[indexPath.item].problem?.fullBodyCoordinates ?? [""])"
+//                cell.typeLabel.text = "Visit Type: New Problem"
+                patient_ID = waitingListCommbineArray[indexPath.item].problem!.patientID!
 
                 }
                 else {
+                    cell.typeLabel.text = "Visit Type: New Problem"
+                    patient_ID = waitingListCommbineArray[indexPath.item].problem!.patientID!
                     cell.nameLabel.text = "Patient is in waiting room"
                 }
         }
         if waitingListCommbineArray[indexPath.item].waitingListType == "followUp" {
             if waitingListCommbineArray[indexPath.item].followUp!.patientName ?? "" != "" {
-                cell.nameLabel.text = "\(waitingListCommbineArray[indexPath.item].followUp!.patientName!) (Follow-Up)"
+                cell.timeLabel.text = waitingListCommbineArray[indexPath.item].followUp!.createdAt ?? ""
+                cell.nameLabel.text = "\(waitingListCommbineArray[indexPath.item].followUp!.patientName!) is in waiting room"
+                cell.typeLabel.text = "Visit Type: Follow-Up"
+//                cell.nameLabel.text = "Follow Up - \(waitingListCommbineArray[indexPath.item].followUp!.patientName!) - \n\(waitingListCommbineArray[indexPath.item].followUp?.patientInWaitingRoom?.fullBodyCoordinates ?? [""])"
+                patient_ID = waitingListCommbineArray[indexPath.item].followUp!.patientId!
+
                 }
                 else{
+                    cell.typeLabel.text = "Visit Type: Follow-Up"
+                    patient_ID = waitingListCommbineArray[indexPath.item].followUp!.patientId!
                     cell.nameLabel.text = "Patient is in waiting room"
                 }
         }
 
         if waitingListCommbineArray[indexPath.item].waitingListType == "operation" {
             if waitingListCommbineArray[indexPath.item].postOp!.patientName ?? "" != "" {
-                cell.nameLabel.text = "\(waitingListCommbineArray[indexPath.item].postOp!.patientName!) (Operation)"
+                cell.timeLabel.text = waitingListCommbineArray[indexPath.item].postOp!.createdAt ?? ""
+                cell.nameLabel.text = "\(waitingListCommbineArray[indexPath.item].postOp!.patientName!) is in waiting room"
+                
+                var surgicalHistoryItems = [String]()
+                surgicalHistoryItems.removeAll()
+                for v in waitingListCommbineArray[indexPath.item].postOp!.surgicalHistory! {
+                    surgicalHistoryItems.append("\(v.name!) \(v.code!)")
+                }
             
+//                cell.typeLabel.text = "Visit Type: Post Operation -"
+                
+                cell.typeLabel.text = "Visit Type: Post Operation - \n \(surgicalHistoryItems.joined(separator: ", ")) \(waitingListCommbineArray[indexPath.item].postOp!.fullBodyCoordinates!.joined(separator: ", "))"
+                
+//                cell.nameLabel.text = "Post Operation - \(waitingListCommbineArray[indexPath.item].postOp?.patientName! ?? "") - \n\(waitingListCommbineArray[indexPath.item].postOp?.fullBodyCoordinates ?? [""])"
+                patient_ID = waitingListCommbineArray[indexPath.item].postOp!.patientId!
 
                 }
                 else{
+                    cell.typeLabel.text = "Visit Type: Post Operation"
+                    patient_ID = waitingListCommbineArray[indexPath.item].postOp!.patientId!
                     cell.nameLabel.text = "Patient is in waiting room"
                 }
         }
-        
-        
-        
-        
-        
-        cell.selectRoomTextField.placeholder = "Select Room"
-        cell.castRoomTextField.placeholder = "Select Cast Room"
-        
-        
-        cell.backgroundColor = Color2
+ 
         cell.layer.cornerRadius = 8
         cell.layer.borderColor = Color1.cgColor
         cell.layer.borderWidth = 2
-        cell.sizeToFit()
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: 60)
+        return CGSize(width: collectionView.frame.size.width, height: 100)
     }
     
     
@@ -239,6 +255,11 @@ extension WaitingListVC : UICollectionViewDataSource,UICollectionViewDelegateFlo
         if waitingListCommbineArray[indexPath.item].waitingListType == "problem" {
             patient_ID = waitingListCommbineArray[indexPath.item].problem!.patientID!
         self.navigationController?.pushViewController(PatientReviewVC(), animated: true)
+        }
+        
+        else if waitingListCommbineArray[indexPath.item].waitingListType == "followUp" {
+            patient_ID = waitingListCommbineArray[indexPath.item].followUp!.patientId!
+            self.navigationController?.pushViewController(FollowUpHpiReviewVC(), animated: true)
         }
     }
    

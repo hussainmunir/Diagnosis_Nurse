@@ -83,7 +83,7 @@ class Login: UIViewController ,UITextFieldDelegate{
         return button
     }( )
     var rememberCheck = false
-    let rememberMebtn : UIButton = {
+    let rememberMeBtn : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setTitle("Remember Me", for: .normal)
@@ -208,7 +208,7 @@ class Login: UIViewController ,UITextFieldDelegate{
         rememberAndForgetStackView.leadingAnchor.constraint(equalTo: checkBox.trailingAnchor,constant: 5).isActive = true
         rememberAndForgetStackView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor).isActive = true
         rememberAndForgetStackView.heightAnchor.constraint(equalToConstant: 13).isActive = true
-        rememberAndForgetStackView.addArrangedSubview(rememberMebtn)
+        rememberAndForgetStackView.addArrangedSubview(rememberMeBtn)
         rememberAndForgetStackView.addArrangedSubview(forgetPasswordbtn)
         
         let signInTopView = UIView()
@@ -248,7 +248,6 @@ class Login: UIViewController ,UITextFieldDelegate{
                     self.activityIndicatorView.stopAnimating()
                     self.VW_overlay.isHidden = true
                     
-                    // ec2-18-222-128-146.us-east-2.compute.amazonaws.com
                 }
                 
                 if let error = err {
@@ -353,12 +352,12 @@ class Login: UIViewController ,UITextFieldDelegate{
             checkBox.setBackgroundImage(UIImage(named: "white-check"), for: .normal)
             checkCheck = true
             rememberCheck = true
-            //            tokencheck = true
+            tokencheck = true
         }else{
             checkBox.setBackgroundImage(UIImage(named: "white-uncheck"), for: .normal)
             checkCheck = false
             rememberCheck = false
-            //            tokencheck = false
+            tokencheck = false
         }
     }
     //---forget password button action
@@ -371,14 +370,14 @@ class Login: UIViewController ,UITextFieldDelegate{
             checkBox.setBackgroundImage(UIImage(named: "white-check"), for: .normal)
             checkCheck = true
             rememberCheck = true
-            //            tokencheck = true
+            tokencheck = true
             
         }
         else {
             checkBox.setBackgroundImage(UIImage(named: "white-uncheck"), for: .normal)
             checkCheck = false
             rememberCheck = false
-            //            tokencheck = false
+            tokencheck = false
         }
         
     }
