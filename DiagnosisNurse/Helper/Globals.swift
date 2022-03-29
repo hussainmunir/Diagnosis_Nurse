@@ -39,5 +39,8 @@ var xraysDescription = String()
 var followUp_post_obj_ID = "618b6e78fa3ea064538dabfc"
 var followUp_post_problemID = "618b6e78fa3ea064538dabfc"
 
+var vitalsDic_nurse = [String:Any]()
+
+
 
 

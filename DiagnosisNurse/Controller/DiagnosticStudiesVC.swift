@@ -266,12 +266,58 @@ class DiagnosticStudiesVC: UIViewController {
     }
     
     @objc func nextBtnAction() {
-        
+        roomChecking()
     }
     
     
     @objc func backBtnAction() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    func roomChecking() {
+        
+       
+        let innervalue:[String:Any] = [
+            "doctorId": "6182ac5bb19ea227705bc685",
+            "roomNumber" : "Room # 2",
+            "castNumber" : "Cast Room # 4",
+            "vitals": vitalsDic_nurse
+
+        ]
+        let  parameter =  [
+            "dignosis": innervalue
+        ]
+        print(parameter)
+        
+
+        guard let url = URL(string: "\(K.mainURL)/api/v1/doctors/updateDiagnosis/6242b0760ca8372088113960") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "PUT"
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue(getToken, forHTTPHeaderField: "Authorization")
+        request.httpBody = try? JSONSerialization.data(withJSONObject: parameter, options: [])
+        
+        URLSession.shared.dataTask(with: request){data,resp,error in
+
+            DispatchQueue.main.sync {
+              
+            }
+            if let error = error {
+                DispatchQueue.main.async {
+                    alertFunc(vc: self, message: error.localizedDescription)
+                }
+            }else{
+
+                DispatchQueue.main.async {
+
+                }
+                
+           
+            }
+            
+        }.resume()
+        
+      
     }
     
 }

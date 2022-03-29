@@ -537,15 +537,15 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
     }
     @objc func nextBtnAction() {
         
-//        doctor_post_vitalsDic = [
-//            "height" : heightTextField.text ?? "",
-//            "weight" : weightTextField.text ?? "",
-//            "BP" : bloodPressureTextField.text ?? "",
-//            "heartrate" : heartRateTextField.text ?? "",
-//            "BMI" : calcLabel.text ?? "",
-//            "respiratory" : respiratoryRateTextField.text ?? ""
-//            
-//        ]
+        vitalsDic_nurse = [
+        "height" : heightTextField.text ?? "",
+        "weight" : weightTextField.text ?? "",
+        "BP" : bloodPressureTextField.text ?? "",
+        "heartrate" : heartRateTextField.text ?? "",
+        "BMI" : calcLabel.text ?? "",
+        "respiratory" : respiratoryRateTextField.text ?? ""
+        
+    ]
         self.navigationController?.pushViewController(DiagnosticStudiesVC(), animated: true)
     }
  

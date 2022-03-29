@@ -280,7 +280,7 @@ class NurseDashboardVC: UIViewController {
     
     @objc func signOutBtnAction() {
         UserDefaults.standard.removeObject(forKey: "token")
-        let loginvc = Login()
+        let loginvc = ViewController()
         loginvc.modalPresentationStyle = .fullScreen
         present(loginvc, animated: true, completion: nil)
     }
