@@ -57,7 +57,7 @@ class WaitingListCell : UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setUpLayouts( )
+        setUpLayouts()
         
     }
     private func setUpLayouts() {

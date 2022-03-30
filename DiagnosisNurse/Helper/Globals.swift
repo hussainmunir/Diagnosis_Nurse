@@ -31,8 +31,8 @@ var hpi_review_array_index_path = Int()
 var detailMedicines = [String]()
 var detailAllergies = [String]()
 
-var RoomNumber = String()
-var castRoom = String()
+var global_RoomNumber = String()
+var global_castRoom = String()
 var vitalsDic = [String:Any]()
 var xraysDescription = String()
 

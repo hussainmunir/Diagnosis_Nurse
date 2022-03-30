@@ -12,9 +12,11 @@ class SelectRoomVC: UIViewController,UITextFieldDelegate {
     let scrollView = UIScrollView()
     let contentView = UIView()
     
+    var room = String()
+    var castRoomNumber = String()
     
-    var roomNumber = (1...25).map { String($0) }
-    var castRoom = (1...8).map { String($0) }
+    var roomNumberArray = (1...25).map { String($0) }
+    var castRoomArray = (1...8).map { String($0) }
     
     var roomPicker = UIPickerView()
     var castPicker = UIPickerView()
@@ -285,6 +287,9 @@ class SelectRoomVC: UIViewController,UITextFieldDelegate {
     }
     @objc func nextBtnAction() {
         
+        global_RoomNumber = room
+        global_castRoom = castRoomNumber
+        
         self.navigationController?.pushViewController(VitalsVC(), animated: true)
     }
     
@@ -298,11 +303,11 @@ extension SelectRoomVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.roomPicker
         {
-            return roomNumber.count
+            return roomNumberArray.count
         }
         if pickerView == self.castPicker
         {
-            return castRoom.count
+            return castRoomArray.count
         }
         else
         {
@@ -313,11 +318,11 @@ extension SelectRoomVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.roomPicker
         {
-            return "Room # \(roomNumber[row])"
+            return "Room # \(roomNumberArray[row])"
         }
         if pickerView == self.castPicker
         {
-            return "Cast Room # \(castRoom[row])"
+            return "Cast Room # \(castRoomArray[row])"
         }
         else {
             return "No Picker Selected"
@@ -327,14 +332,14 @@ extension SelectRoomVC: UIPickerViewDelegate, UIPickerViewDataSource {
         if pickerView == self.roomPicker
         {
             
-            roomTextField.text = "Room # \(roomNumber[row])"
-            
+            roomTextField.text = "Room # \(roomNumberArray[row])"
+            room = "Room # \(roomNumberArray[row])"
         }
         if pickerView == self.castPicker
         {
             
-            castRoomTextField.text = "Cast Room # \(castRoom[row])"
-            
+            castRoomTextField.text = "Cast Room # \(castRoomArray[row])"
+            castRoomNumber = "Cast Room # \(castRoomArray[row])"
         }
         
     }

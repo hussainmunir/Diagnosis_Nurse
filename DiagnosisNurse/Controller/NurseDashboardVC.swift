@@ -18,6 +18,7 @@ class NurseDashboardVC: UIViewController {
     }()
     let nameLabel: UILabel = {
         let label = UILabel()
+        label.text = "Nurse"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -62,7 +63,7 @@ class NurseDashboardVC: UIViewController {
         button.layer.cornerRadius = 8
         button.layer.borderColor = Color1.cgColor
         button.layer.borderWidth = 2
-//        button.addTarget(self, action: #selector(xrayWaitingBtnAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(xrayWaitingBtnAction), for: .touchUpInside)
         return button
     }()
     
@@ -266,7 +267,8 @@ class NurseDashboardVC: UIViewController {
         
     }
     @objc func xrayWaitingBtnAction() {
-
+        self.navigationController?.pushViewController(XRayWaitingListVC(), animated: true)
+ 
     }
     
     @objc func labsBtnAction() {

@@ -34,6 +34,9 @@
 		248564D227F19051004F5049 /* PostOpHpiReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564D127F19051004F5049 /* PostOpHpiReviewVC.swift */; };
 		248564D427F1CCEB004F5049 /* SelectRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564D327F1CCEB004F5049 /* SelectRoomVC.swift */; };
 		248564D627F1D5A0004F5049 /* WaitingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564D527F1D5A0004F5049 /* WaitingListCell.swift */; };
+		24950D2927F45E620093A22D /* XRayWaitingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2827F45E620093A22D /* XRayWaitingListVC.swift */; };
+		24950D2B27F45EC20093A22D /* XRayWaitingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2A27F45EC20093A22D /* XRayWaitingListCell.swift */; };
+		24950D2D27F473EB0093A22D /* XRay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2C27F473EB0093A22D /* XRay.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +69,9 @@
 		248564D127F19051004F5049 /* PostOpHpiReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOpHpiReviewVC.swift; sourceTree = "<group>"; };
 		248564D327F1CCEB004F5049 /* SelectRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoomVC.swift; sourceTree = "<group>"; };
 		248564D527F1D5A0004F5049 /* WaitingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingListCell.swift; sourceTree = "<group>"; };
+		24950D2827F45E620093A22D /* XRayWaitingListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayWaitingListVC.swift; sourceTree = "<group>"; };
+		24950D2A27F45EC20093A22D /* XRayWaitingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayWaitingListCell.swift; sourceTree = "<group>"; };
+		24950D2C27F473EB0093A22D /* XRay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRay.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +131,7 @@
 				248564D327F1CCEB004F5049 /* SelectRoomVC.swift */,
 				248564B327E8A8E6004F5049 /* VitalsVC.swift */,
 				248564BA27E8AD81004F5049 /* DiagnosticStudiesVC.swift */,
+				24950D2E27F473F20093A22D /* XRayList */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -146,6 +153,7 @@
 				248564B127E8598C004F5049 /* WaitingListCellOld.swift */,
 				248564D527F1D5A0004F5049 /* WaitingListCell.swift */,
 				248564C627EB25E0004F5049 /* HPIReviewCell.swift */,
+				24950D2A27F45EC20093A22D /* XRayWaitingListCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -160,6 +168,15 @@
 				248564C827EB265C004F5049 /* HPIReviewModel.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		24950D2E27F473F20093A22D /* XRayList */ = {
+			isa = PBXGroup;
+			children = (
+				24950D2827F45E620093A22D /* XRayWaitingListVC.swift */,
+				24950D2C27F473EB0093A22D /* XRay.swift */,
+			);
+			path = XRayList;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -244,12 +261,15 @@
 				248564BD27E9D3B4004F5049 /* NewPatientReviewVC.swift in Sources */,
 				248564AC27E855E6004F5049 /* Login.swift in Sources */,
 				248564D227F19051004F5049 /* PostOpHpiReviewVC.swift in Sources */,
+				24950D2B27F45EC20093A22D /* XRayWaitingListCell.swift in Sources */,
 				248564C327EB207C004F5049 /* WaitingListAllModel.swift in Sources */,
 				248564D627F1D5A0004F5049 /* WaitingListCell.swift in Sources */,
 				248564C727EB25E0004F5049 /* HPIReviewCell.swift in Sources */,
 				248564B427E8A8E6004F5049 /* VitalsVC.swift in Sources */,
 				248564BB27E8AD81004F5049 /* DiagnosticStudiesVC.swift in Sources */,
+				24950D2D27F473EB0093A22D /* XRay.swift in Sources */,
 				248564AA27E8533E004F5049 /* ThemeColor.swift in Sources */,
+				24950D2927F45E620093A22D /* XRayWaitingListVC.swift in Sources */,
 				2485649627E850D0004F5049 /* AppDelegate.swift in Sources */,
 				2485649827E850D0004F5049 /* SceneDelegate.swift in Sources */,
 				248564C127EB1FB4004F5049 /* Globals.swift in Sources */,

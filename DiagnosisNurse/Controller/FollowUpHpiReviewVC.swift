@@ -261,7 +261,7 @@ class FollowUpHpiReviewVC: UIViewController {
     }
     
     @objc func nextBtnAction(){
-        self.navigationController?.pushViewController(VitalsVC(), animated: true)
+        self.navigationController?.pushViewController(SelectRoomVC(), animated: true)
     }
     @objc func backBtnAction(){
         self.navigationController?.popViewController(animated: true)
