@@ -278,7 +278,7 @@ class DiagnosticStudiesVC: UIViewController {
         
        
         let innervalue:[String:Any] = [
-            "doctorId": "6182ac5bb19ea227705bc685",
+//            "doctorId": "6182ac5bb19ea227705bc685",
             "roomNumber" : "Room # 2",
             "castNumber" : "Cast Room # 4",
             "vitals": vitalsDic_nurse
