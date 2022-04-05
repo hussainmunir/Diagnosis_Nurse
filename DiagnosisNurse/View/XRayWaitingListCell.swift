@@ -21,13 +21,17 @@ class XRayWaitingListCell : UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
-   
-    let menuImage : UIImageView = {
-           let image = UIImageView(image: #imageLiteral(resourceName: "doted"))
-           image.translatesAutoresizingMaskIntoConstraints = false
-           image.contentMode = .scaleAspectFit
-           return image
-       }()
+    
+    let descriptionLabel : UILabel = {
+        let label = UILabel()
+        label.textColor = Color1
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        label.sizeToFit()
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 10
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -36,15 +40,21 @@ class XRayWaitingListCell : UICollectionViewCell {
     }
     private func setUpLayouts() {
         contentView.addSubview(nameLabel)
-        contentView.addSubview(menuImage)
+        contentView.addSubview(descriptionLabel)
+
         
         
-        nameLabel.centerYAnchor.constraint(equalTo: contentView.topAnchor, constant: 20).isActive = true
-        nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5).isActive = true
+        nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
-        
-        menuImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
-        menuImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true
+//        nameLabel.bottomAnchor.constraint(equalTo: descriptionLabel.topAnchor, constant: -5).isActive = true
+
+        descriptionLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
+        descriptionLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 15).isActive = true
+        descriptionLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
+        descriptionLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -5).isActive = true
+
+     
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -19,20 +19,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         
         
-//        guard let windowScene = (scene as? UIWindowScene) else { return }
-//        window  = UIWindow(frame: windowScene.coordinateSpace.bounds)
-//        window?.windowScene = windowScene
-//        if UserDefaults.standard.value(forKey: "token") != nil {
-//            window?.rootViewController = ViewController()
-////            window?.rootViewController = SkinExamVC()
-//
-//            window?.makeKeyAndVisible()
-//        }
-//        else {
-//            window?.rootViewController = XRayWaitingListVC()
-//            window?.makeKeyAndVisible()
-//        }
-//    }
+        guard let windowScene = (scene as? UIWindowScene) else { return }
+        window  = UIWindow(frame: windowScene.coordinateSpace.bounds)
+        window?.windowScene = windowScene
+        if UserDefaults.standard.value(forKey: "token") != nil {
+            window?.rootViewController = NurseTabVC()
+//            window?.rootViewController = AddNewPharmacyVC()
+            window?.makeKeyAndVisible()
+        }else{
+            window?.rootViewController = ViewController()
+            window?.makeKeyAndVisible()
+        }
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

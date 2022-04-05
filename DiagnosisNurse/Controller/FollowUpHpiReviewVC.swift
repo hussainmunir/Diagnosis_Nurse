@@ -62,10 +62,10 @@ class FollowUpHpiReviewVC: UIViewController {
         
         
         followUp_post_obj_ID = waitingListCommbineArray[hpi_review_array_index_path].followUp!._id!
-        print(followUp_post_obj_ID)
+        print(postOp_post_obj_ID)
         
         followUp_post_problemID = waitingListCommbineArray[hpi_review_array_index_path].followUp!.problemId!
-        
+        print(followUp_post_problemID)
        
         
         fillArray()

@@ -64,6 +64,35 @@ class XRayWaitingListVC: UIViewController {
     
     func getList() {
         
+        guard let url = URL(string: "\(K.mainURL)/api/v1/nurse/getPatientLabs/6182ac5bb19ea227705bc685") else { return }
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        request.addValue(getToken, forHTTPHeaderField: "Authorization")
+        URLSession.shared.dataTask(with: request){data,resp,err in
+            if let error = err {
+                print("******** error *****\(error.localizedDescription)")
+            }else{
+                guard let data = data else { return }
+//                print(String(data: data, encoding: .utf8)!)
+
+                let jsonData = try? JSONDecoder().decode(LabsWaitingModel.self, from: data)
+                print(jsonData as Any)
+
+                if jsonData?.data != nil {
+                    
+                    labsWaitingArray = (jsonData?.data)!.reversed()
+                    
+              
+                    DispatchQueue.main.async {
+                        self.collectionView.reloadData()
+                                
+                    }
+                  
+                }
+            }
+            
+        }.resume()
     }
     
 }
@@ -73,14 +102,17 @@ extension XRayWaitingListVC : UICollectionViewDataSource,UICollectionViewDelegat
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return 4
+        return labsWaitingArray.count
+
         
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! XRayWaitingListCell
         
-        cell.nameLabel.text = "Patient"
+        cell.nameLabel.text = "\(labsWaitingArray[indexPath.item].patientName ?? "")\n\(labsWaitingArray[indexPath.item].name ?? "")\n\(labsWaitingArray[indexPath.item].date ?? "")\nStatus: \(labsWaitingArray[indexPath.item].progress ?? "")\nCompany Name: \(labsWaitingArray[indexPath.item].companyName ?? "")"
+        
+        cell.descriptionLabel.text = labsWaitingArray[indexPath.item].description
         
         cell.layer.cornerRadius = 8
         cell.layer.borderColor = Color1.cgColor
@@ -89,12 +121,13 @@ extension XRayWaitingListVC : UICollectionViewDataSource,UICollectionViewDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.size.width, height: 60)
+        return CGSize(width: collectionView.frame.size.width, height: 150)
     }
     
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
-        
+        patient_lab_detail_index_path = indexPath.item
+//        navigationController?.pushViewController(XRaysListVC(), animated: true)
     }
 }

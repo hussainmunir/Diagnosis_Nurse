@@ -225,7 +225,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                     "email": emailTextField.text!,
                     "password": passwordTextField.text!
                 ]
-        guard  let url = URL(string: "\(K.mainURL)/api/v1/doctors/login") else { return }
+        guard  let url = URL(string: "\(K.mainURL)/api/v1/nurse/login") else { return }
                 var request = URLRequest(url: url)
                 request.httpMethod = "POST"
                 request.setValue("Application/json", forHTTPHeaderField: "Content-Type")

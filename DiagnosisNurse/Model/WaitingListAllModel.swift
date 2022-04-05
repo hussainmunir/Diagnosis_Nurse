@@ -225,6 +225,7 @@ struct WaitingDataModel: Decodable {
     let fullBodyCoordinates : [String]?
     let injury : getInjuryModel?
     let patientID : String?
+    let doctorId : String?
     let patientName : String?
     let previousTreatment : getPreviousTreatmentModel?
 //    let radiationDistribution : [String]?
@@ -236,7 +237,8 @@ struct WaitingDataModel: Decodable {
     let symptomsRadiation : getSymptomsRadiation?
     let symptomsStarted : String?
     let createdAt : String?
-    
+    let castNumber, roomNumber : String?
+   
 }
 
 struct currentIssueMedicationModel:Decodable {

@@ -34,9 +34,14 @@
 		248564D227F19051004F5049 /* PostOpHpiReviewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564D127F19051004F5049 /* PostOpHpiReviewVC.swift */; };
 		248564D427F1CCEB004F5049 /* SelectRoomVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564D327F1CCEB004F5049 /* SelectRoomVC.swift */; };
 		248564D627F1D5A0004F5049 /* WaitingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248564D527F1D5A0004F5049 /* WaitingListCell.swift */; };
+		248D826A27FC1159008EC246 /* LabsWaitingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D826927FC1159008EC246 /* LabsWaitingModel.swift */; };
+		248D826C27FC1682008EC246 /* NurseTabVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D826B27FC1682008EC246 /* NurseTabVC.swift */; };
+		248D826E27FC1B5A008EC246 /* PatientLabCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D826D27FC1B5A008EC246 /* PatientLabCell.swift */; };
+		248D827027FC42E0008EC246 /* XRayDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D826F27FC42E0008EC246 /* XRayDetailsVC.swift */; };
+		248D827227FC7333008EC246 /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = 248D827127FC7333008EC246 /* Media.swift */; };
 		24950D2927F45E620093A22D /* XRayWaitingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2827F45E620093A22D /* XRayWaitingListVC.swift */; };
 		24950D2B27F45EC20093A22D /* XRayWaitingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2A27F45EC20093A22D /* XRayWaitingListCell.swift */; };
-		24950D2D27F473EB0093A22D /* XRay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2C27F473EB0093A22D /* XRay.swift */; };
+		24950D2D27F473EB0093A22D /* XRaysListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2C27F473EB0093A22D /* XRaysListVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,9 +74,14 @@
 		248564D127F19051004F5049 /* PostOpHpiReviewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostOpHpiReviewVC.swift; sourceTree = "<group>"; };
 		248564D327F1CCEB004F5049 /* SelectRoomVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectRoomVC.swift; sourceTree = "<group>"; };
 		248564D527F1D5A0004F5049 /* WaitingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaitingListCell.swift; sourceTree = "<group>"; };
+		248D826927FC1159008EC246 /* LabsWaitingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabsWaitingModel.swift; sourceTree = "<group>"; };
+		248D826B27FC1682008EC246 /* NurseTabVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NurseTabVC.swift; sourceTree = "<group>"; };
+		248D826D27FC1B5A008EC246 /* PatientLabCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatientLabCell.swift; sourceTree = "<group>"; };
+		248D826F27FC42E0008EC246 /* XRayDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayDetailsVC.swift; sourceTree = "<group>"; };
+		248D827127FC7333008EC246 /* Media.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		24950D2827F45E620093A22D /* XRayWaitingListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayWaitingListVC.swift; sourceTree = "<group>"; };
 		24950D2A27F45EC20093A22D /* XRayWaitingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayWaitingListCell.swift; sourceTree = "<group>"; };
-		24950D2C27F473EB0093A22D /* XRay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRay.swift; sourceTree = "<group>"; };
+		24950D2C27F473EB0093A22D /* XRaysListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRaysListVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +131,7 @@
 		248564B727E8AB8D004F5049 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				248D826B27FC1682008EC246 /* NurseTabVC.swift */,
 				2485649927E850D0004F5049 /* ViewController.swift */,
 				248564AB27E855E5004F5049 /* Login.swift */,
 				248564BE27EB02FE004F5049 /* NurseDashboardVC.swift */,
@@ -154,6 +165,7 @@
 				248564D527F1D5A0004F5049 /* WaitingListCell.swift */,
 				248564C627EB25E0004F5049 /* HPIReviewCell.swift */,
 				24950D2A27F45EC20093A22D /* XRayWaitingListCell.swift */,
+				248D826D27FC1B5A008EC246 /* PatientLabCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -166,6 +178,8 @@
 				248564C227EB207C004F5049 /* WaitingListAllModel.swift */,
 				248564C427EB217A004F5049 /* PatientInfoModel.swift */,
 				248564C827EB265C004F5049 /* HPIReviewModel.swift */,
+				248D826927FC1159008EC246 /* LabsWaitingModel.swift */,
+				248D827127FC7333008EC246 /* Media.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -174,7 +188,8 @@
 			isa = PBXGroup;
 			children = (
 				24950D2827F45E620093A22D /* XRayWaitingListVC.swift */,
-				24950D2C27F473EB0093A22D /* XRay.swift */,
+				24950D2C27F473EB0093A22D /* XRaysListVC.swift */,
+				248D826F27FC42E0008EC246 /* XRayDetailsVC.swift */,
 			);
 			path = XRayList;
 			sourceTree = "<group>";
@@ -256,8 +271,10 @@
 				248564D027F18153004F5049 /* FollowUpHpiReviewVC.swift in Sources */,
 				248564D427F1CCEB004F5049 /* SelectRoomVC.swift in Sources */,
 				248564BF27EB02FE004F5049 /* NurseDashboardVC.swift in Sources */,
+				248D827227FC7333008EC246 /* Media.swift in Sources */,
 				248564B627E8A9FC004F5049 /* TextField.swift in Sources */,
 				248564C527EB217A004F5049 /* PatientInfoModel.swift in Sources */,
+				248D827027FC42E0008EC246 /* XRayDetailsVC.swift in Sources */,
 				248564BD27E9D3B4004F5049 /* NewPatientReviewVC.swift in Sources */,
 				248564AC27E855E6004F5049 /* Login.swift in Sources */,
 				248564D227F19051004F5049 /* PostOpHpiReviewVC.swift in Sources */,
@@ -267,13 +284,16 @@
 				248564C727EB25E0004F5049 /* HPIReviewCell.swift in Sources */,
 				248564B427E8A8E6004F5049 /* VitalsVC.swift in Sources */,
 				248564BB27E8AD81004F5049 /* DiagnosticStudiesVC.swift in Sources */,
-				24950D2D27F473EB0093A22D /* XRay.swift in Sources */,
+				24950D2D27F473EB0093A22D /* XRaysListVC.swift in Sources */,
 				248564AA27E8533E004F5049 /* ThemeColor.swift in Sources */,
 				24950D2927F45E620093A22D /* XRayWaitingListVC.swift in Sources */,
 				2485649627E850D0004F5049 /* AppDelegate.swift in Sources */,
 				2485649827E850D0004F5049 /* SceneDelegate.swift in Sources */,
 				248564C127EB1FB4004F5049 /* Globals.swift in Sources */,
+				248D826E27FC1B5A008EC246 /* PatientLabCell.swift in Sources */,
+				248D826A27FC1159008EC246 /* LabsWaitingModel.swift in Sources */,
 				248564CC27EC5B78004F5049 /* UserAuthModel.swift in Sources */,
+				248D826C27FC1682008EC246 /* NurseTabVC.swift in Sources */,
 				248564CE27EC72FB004F5049 /* NurseInfoModel.swift in Sources */,
 				248564B227E8598C004F5049 /* WaitingListCellOld.swift in Sources */,
 				248564C927EB265C004F5049 /* HPIReviewModel.swift in Sources */,

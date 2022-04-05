@@ -61,6 +61,9 @@ class PatientReviewVC: UIViewController {
         collectionView.dataSource = self
         collectionView.delegate = self
         fillArray()
+        
+        doctor_post_problemID = waitingListCommbineArray[hpi_review_array_index_path].problem!._id!
+
        
    }
     

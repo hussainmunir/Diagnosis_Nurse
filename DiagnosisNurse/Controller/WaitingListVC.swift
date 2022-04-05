@@ -102,7 +102,7 @@ class WaitingListVC : UIViewController {
     }
     
     func getWaiting() {
-        guard let url = URL(string: "\(K.mainURL)/api/v1/doctors/getCombineWaitingList") else { return }
+        guard let url = URL(string: "\(K.mainURL)/api/v1/nurse/getCombineWaitingList/6182ac5bb19ea227705bc685") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -112,7 +112,7 @@ class WaitingListVC : UIViewController {
                 print("******** error *****\(error.localizedDescription)")
             }else{
                 guard let data = data else { return }
-                print(String(data: data, encoding: .utf8)!)
+//                print(String(data: data, encoding: .utf8)!)
 
                 let jsonData = try? JSONDecoder().decode(WaitingAllModel.self, from: data)
 //                print(jsonData)
@@ -253,13 +253,27 @@ extension WaitingListVC : UICollectionViewDataSource,UICollectionViewDelegateFlo
         hpi_review_array_index_path = indexPath.item
 
         if waitingListCommbineArray[indexPath.item].waitingListType == "problem" {
-            patient_ID = waitingListCommbineArray[indexPath.item].problem!.patientID!
+            patient_ID = waitingListCommbineArray[indexPath.item].problem!.patientID ?? ""
+            doctor_ID = waitingListCommbineArray[indexPath.item].problem!.doctorId ?? ""
+            patient_name = waitingListCommbineArray[indexPath.item].problem!.patientName ?? ""
+            print(patient_name)
         self.navigationController?.pushViewController(PatientReviewVC(), animated: true)
         }
         
         else if waitingListCommbineArray[indexPath.item].waitingListType == "followUp" {
-            patient_ID = waitingListCommbineArray[indexPath.item].followUp!.patientId!
+            patient_ID = waitingListCommbineArray[indexPath.item].followUp!.patientId ?? ""
+            doctor_ID =  waitingListCommbineArray[indexPath.item].followUp!.doctorId ?? ""
+            patient_name =  waitingListCommbineArray[indexPath.item].followUp!.patientName ?? ""
+            print(patient_name)
             self.navigationController?.pushViewController(FollowUpHpiReviewVC(), animated: true)
+        }
+        
+        else if waitingListCommbineArray[indexPath.item].waitingListType == "operation" {
+            patient_ID = waitingListCommbineArray[indexPath.item].postOp!.patientId ?? ""
+            doctor_ID = waitingListCommbineArray[indexPath.item].postOp!.doctorId ?? ""
+            patient_name = waitingListCommbineArray[indexPath.item].postOp!.patientName ?? ""
+            print(patient_name)
+            self.navigationController?.pushViewController(PostOpHpiReviewVC(), animated: true)
         }
     }
    

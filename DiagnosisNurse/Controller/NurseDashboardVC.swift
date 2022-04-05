@@ -18,7 +18,6 @@ class NurseDashboardVC: UIViewController {
     }()
     let nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Nurse"
         label.font = UIFont.boldSystemFont(ofSize: 18)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -154,7 +153,7 @@ class NurseDashboardVC: UIViewController {
     }
     
     func getDoctorInfo(){
-        guard let url = URL(string: "\(K.mainURL)/api/v1/doctors/getDr") else { return }
+        guard let url = URL(string: "\(K.mainURL)/api/v1/nurse/getNurse") else { return }
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         request.addValue("application/json", forHTTPHeaderField: "Accept")
@@ -172,7 +171,20 @@ class NurseDashboardVC: UIViewController {
                       
                         DispatchQueue.main.async {
                           
+                            Global_nurse_Id = (jsonData.data?._id) ?? ""
+                            Global_nurse_Email = (jsonData.data?.email) ?? ""
+                             Global_nurse_homeAddress = (jsonData.data?.homeAddress) ?? ""
+                             Global_nurse_name = (jsonData.data?.name) ?? ""
+                             Global_nurse_password = (jsonData.data?.password) ?? ""
+                             Global_nurse_phone = (jsonData.data?.phone) ?? 0
+                            Global_nurse_EmergencyContact = (jsonData.data?.emergencyContact ?? 0)
+                            Global_nurse_npi = String((jsonData.data?.npi) ?? "")
+                            Global_nurse_dea = String((jsonData.data?.dea) ?? "")
+                            Global_nurse_companyName = String((jsonData.data?.companyName) ?? "")
                             
+                            self.emailLabel.text = Global_nurse_Email
+                            self.nameLabel.text = Global_nurse_name
+                            print(Global_nurse_companyName)
                         }
                     }else{
                         DispatchQueue.main.async {

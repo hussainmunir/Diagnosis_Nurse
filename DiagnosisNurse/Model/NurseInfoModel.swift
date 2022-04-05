@@ -22,5 +22,7 @@ struct DoctorInfoModelData : Decodable {
     let homeAddress : String?
     let npi : String?
     let dea : String?
+    let doctorId : String?
+    let companyName : String?
     
 }
