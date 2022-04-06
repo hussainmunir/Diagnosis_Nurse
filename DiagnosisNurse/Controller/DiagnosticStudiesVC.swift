@@ -358,8 +358,8 @@ class DiagnosticStudiesVC: UIViewController {
         let updLabs : [String:Any] = [
 
             "name": "X-Ray",
-            "date": "\(timeStamp)" ?? "",
-            "description": textView.text! ?? "",
+            "date": "\(timeStamp)",
+            "description": textView.text ?? "",
             "patientId": patient_ID,
             "doctorId": doctor_ID,
             "patientName":patient_name,
