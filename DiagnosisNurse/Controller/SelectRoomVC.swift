@@ -24,7 +24,7 @@ class SelectRoomVC: UIViewController,UITextFieldDelegate {
     let roomLabel : UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.text = "Select Room"
+        label.text = "Select Location"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = Color1
         return label
@@ -88,7 +88,7 @@ class SelectRoomVC: UIViewController,UITextFieldDelegate {
         self.navigationItem.standardAppearance = appearance;
         self.navigationItem.scrollEdgeAppearance = self.navigationItem.standardAppearance
         view.backgroundColor = Color1
-        self.navigationItem.title = "Select Room"
+        self.navigationItem.title = "Select Location"
         roomTextField.delegate = self
         castRoomTextField.delegate = self
         
@@ -286,9 +286,13 @@ class SelectRoomVC: UIViewController,UITextFieldDelegate {
         self.navigationController?.popViewController(animated: true)
     }
     @objc func nextBtnAction() {
-        
+        global_RoomNumber = ""
+        global_castRoom = ""
         global_RoomNumber = room
         global_castRoom = castRoomNumber
+        
+        print(global_RoomNumber)
+        print(global_castRoom)
         
         self.navigationController?.pushViewController(VitalsVC(), animated: true)
     }

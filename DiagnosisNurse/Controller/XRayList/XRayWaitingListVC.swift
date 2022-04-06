@@ -112,7 +112,7 @@ extension XRayWaitingListVC : UICollectionViewDataSource,UICollectionViewDelegat
         
         cell.nameLabel.text = "\(labsWaitingArray[indexPath.item].patientName ?? "")\n\(labsWaitingArray[indexPath.item].name ?? "")\n\(labsWaitingArray[indexPath.item].date ?? "")\nStatus: \(labsWaitingArray[indexPath.item].progress ?? "")\nCompany Name: \(labsWaitingArray[indexPath.item].companyName ?? "")"
         
-        cell.descriptionLabel.text = labsWaitingArray[indexPath.item].description
+        cell.descriptionLabel.text = "Details: \(labsWaitingArray[indexPath.item].description ?? "")"
         
         cell.layer.cornerRadius = 8
         cell.layer.borderColor = Color1.cgColor

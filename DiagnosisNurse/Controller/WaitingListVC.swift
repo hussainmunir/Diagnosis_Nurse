@@ -9,6 +9,8 @@ import UIKit
 
 class WaitingListVC : UIViewController {
     
+    let refreshControl = UIRefreshControl()
+    
     let collectionView : UICollectionView = {
         let layout = UICollectionViewFlowLayout( )
         layout.scrollDirection = .vertical
@@ -72,6 +74,12 @@ class WaitingListVC : UIViewController {
         self.navigationController?.navigationBar.barTintColor = Color2
         self.tabBarController?.tabBar.isHidden = true
         self.navigationItem.title = "Patients List"
+        
+        refreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh")
+        refreshControl.addTarget(self, action: #selector(self.refresh(_:)), for: .valueChanged)
+        collectionView.alwaysBounceVertical = true
+        collectionView.refreshControl = refreshControl
+        
         collectionView.dataSource = self
         collectionView.delegate = self
         setUpLayout()
@@ -80,6 +88,14 @@ class WaitingListVC : UIViewController {
         
     }
         
+    @objc func refresh(_ sender: AnyObject) {
+        getWaiting()
+
+       // Code to refresh table view
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+            self.refreshControl.endRefreshing()
+        }
+    }
     
     func setUpLayout() {
         
@@ -118,9 +134,32 @@ class WaitingListVC : UIViewController {
 //                print(jsonData)
 
                 if jsonData?.data != nil {
+                    DispatchQueue.main.async {
+                    waitingListCommbineArrayAll.removeAll()
+                    waitingListCommbineArray.removeAll()
                     
-                    waitingListCommbineArray = (jsonData?.data)!.reversed()
-                    
+                    waitingListCommbineArrayAll = (jsonData?.data)!.reversed()
+                    for v in waitingListCommbineArrayAll {
+                        if v.waitingListType == "problem" {
+                        if v.problem!.roomNumber ?? "" == "" || v.problem!.castNumber ?? "" == "" {
+                            waitingListCommbineArray.append(v)
+                        }
+                        }
+                        
+                        if v.waitingListType == "followUp" {
+                        if v.followUp!.roomNumber ?? "" == "" || v.followUp!.castNumber ?? "" == "" {
+                            waitingListCommbineArray.append(v)
+                        }
+                        }
+                        
+                        if v.waitingListType == "operation" {
+                        if v.postOp!.roomNumber ?? "" == "" || v.postOp!.castNumber ?? "" == "" {
+                            waitingListCommbineArray.append(v)
+                        }
+                        }
+                        
+                    }
+                    }
               
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
@@ -247,7 +286,9 @@ extension WaitingListVC : UICollectionViewDataSource,UICollectionViewDelegateFlo
         return CGSize(width: collectionView.frame.size.width, height: 100)
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+            return CGSize(width: collectionView.frame.width, height: 10.0)
+    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         hpi_review_array_index_path = indexPath.item
@@ -256,6 +297,7 @@ extension WaitingListVC : UICollectionViewDataSource,UICollectionViewDelegateFlo
             patient_ID = waitingListCommbineArray[indexPath.item].problem!.patientID ?? ""
             doctor_ID = waitingListCommbineArray[indexPath.item].problem!.doctorId ?? ""
             patient_name = waitingListCommbineArray[indexPath.item].problem!.patientName ?? ""
+            problem_id = waitingListCommbineArray[indexPath.item].problem!._id ?? ""
             print(patient_name)
         self.navigationController?.pushViewController(PatientReviewVC(), animated: true)
         }
@@ -264,6 +306,7 @@ extension WaitingListVC : UICollectionViewDataSource,UICollectionViewDelegateFlo
             patient_ID = waitingListCommbineArray[indexPath.item].followUp!.patientId ?? ""
             doctor_ID =  waitingListCommbineArray[indexPath.item].followUp!.doctorId ?? ""
             patient_name =  waitingListCommbineArray[indexPath.item].followUp!.patientName ?? ""
+            problem_id =  waitingListCommbineArray[indexPath.item].followUp!.problemId ?? ""
             print(patient_name)
             self.navigationController?.pushViewController(FollowUpHpiReviewVC(), animated: true)
         }
@@ -272,6 +315,7 @@ extension WaitingListVC : UICollectionViewDataSource,UICollectionViewDelegateFlo
             patient_ID = waitingListCommbineArray[indexPath.item].postOp!.patientId ?? ""
             doctor_ID = waitingListCommbineArray[indexPath.item].postOp!.doctorId ?? ""
             patient_name = waitingListCommbineArray[indexPath.item].postOp!.patientName ?? ""
+            problem_id = waitingListCommbineArray[indexPath.item].postOp!.problemId ?? ""
             print(patient_name)
             self.navigationController?.pushViewController(PostOpHpiReviewVC(), animated: true)
         }

@@ -42,6 +42,7 @@
 		24950D2927F45E620093A22D /* XRayWaitingListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2827F45E620093A22D /* XRayWaitingListVC.swift */; };
 		24950D2B27F45EC20093A22D /* XRayWaitingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2A27F45EC20093A22D /* XRayWaitingListCell.swift */; };
 		24950D2D27F473EB0093A22D /* XRaysListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2C27F473EB0093A22D /* XRaysListVC.swift */; };
+		BB8D89EC27FE167C00B72F9C /* PdfViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D89EB27FE167C00B72F9C /* PdfViewVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -82,6 +83,7 @@
 		24950D2827F45E620093A22D /* XRayWaitingListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayWaitingListVC.swift; sourceTree = "<group>"; };
 		24950D2A27F45EC20093A22D /* XRayWaitingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayWaitingListCell.swift; sourceTree = "<group>"; };
 		24950D2C27F473EB0093A22D /* XRaysListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRaysListVC.swift; sourceTree = "<group>"; };
+		BB8D89EB27FE167C00B72F9C /* PdfViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfViewVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +144,7 @@
 				248564D327F1CCEB004F5049 /* SelectRoomVC.swift */,
 				248564B327E8A8E6004F5049 /* VitalsVC.swift */,
 				248564BA27E8AD81004F5049 /* DiagnosticStudiesVC.swift */,
+				BB8D89EB27FE167C00B72F9C /* PdfViewVC.swift */,
 				24950D2E27F473F20093A22D /* XRayList */,
 			);
 			path = Controller;
@@ -288,6 +291,7 @@
 				248564AA27E8533E004F5049 /* ThemeColor.swift in Sources */,
 				24950D2927F45E620093A22D /* XRayWaitingListVC.swift in Sources */,
 				2485649627E850D0004F5049 /* AppDelegate.swift in Sources */,
+				BB8D89EC27FE167C00B72F9C /* PdfViewVC.swift in Sources */,
 				2485649827E850D0004F5049 /* SceneDelegate.swift in Sources */,
 				248564C127EB1FB4004F5049 /* Globals.swift in Sources */,
 				248D826E27FC1B5A008EC246 /* PatientLabCell.swift in Sources */,
@@ -457,7 +461,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.macrosoar.DiagnosisNurse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -485,7 +489,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.0;
+				MARKETING_VERSION = 2.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.macrosoar.DiagnosisNurse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;

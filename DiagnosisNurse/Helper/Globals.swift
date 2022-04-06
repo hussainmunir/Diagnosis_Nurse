@@ -20,8 +20,10 @@ var getToken = String()
 var patient_ID = String()
 var doctor_ID = String()
 var patient_name = String()
+var problem_id = String()
 
 var waitingListCommbineArray = [WaitingAllCombineDataModel]()
+var waitingListCommbineArrayAll = [WaitingAllCombineDataModel]()
 
 var labsWaitingArray = [LabsWaitingDataModel]()
 

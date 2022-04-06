@@ -102,6 +102,7 @@ struct FollowUpModal: Decodable {
     let patientName: String?
     let currentPatientMedication : [PatientMedicationModel]?
     let createdAt : String?
+    let castNumber, roomNumber : String?
 }
 
 // MARK: - FollowUpVisit
@@ -174,6 +175,7 @@ struct OperationModel: Decodable {
     let fullBodyCoordinates: [String]?
     let differentialDignosis: [DifferentialDignosis]?
     let createdAt : String?
+    let castNumber, roomNumber : String?
 }
 
 //// MARK: - SurgicalHistory
