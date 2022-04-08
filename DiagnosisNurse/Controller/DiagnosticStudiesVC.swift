@@ -390,7 +390,7 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         let innerValue:[String:Any] = [
             //            "doctorId": "6182ac5bb19ea227705bc685",
             "roomNumber" : global_RoomNumber,
-            "castNumber" : global_castRoom,
+//            "castNumber" : global_castRoom,
             "vitals": vitalsDic_nurse
             
         ]
@@ -561,7 +561,7 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         
         let innerValue:[String:Any] = [
             "roomNumber" : global_RoomNumber,
-            "castNumber" : global_castRoom,
+//            "castNumber" : global_castRoom,
             "vitals": vitalsDic_nurse
             
         ]
@@ -616,7 +616,7 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         
         let innerValue:[String:Any] = [
             "roomNumber" : global_RoomNumber,
-            "castNumber" : global_castRoom,
+//            "castNumber" : global_castRoom,
             "vitals": vitalsDic_nurse
             
         ]

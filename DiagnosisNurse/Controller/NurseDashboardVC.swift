@@ -165,7 +165,7 @@ class NurseDashboardVC: UIViewController {
             }else{
                 guard let data = data else { return }
                 do{
-                    let jsonData = try JSONDecoder().decode(DoctorInfoModel.self, from: data)
+                    let jsonData = try JSONDecoder().decode(NurseInfoModel.self, from: data)
                     print(jsonData)
                    if jsonData != nil {
                       
@@ -181,6 +181,7 @@ class NurseDashboardVC: UIViewController {
                             Global_nurse_npi = String((jsonData.data?.npi) ?? "")
                             Global_nurse_dea = String((jsonData.data?.dea) ?? "")
                             Global_nurse_companyName = String((jsonData.data?.companyName) ?? "")
+                            Global_nurse_gender = String((jsonData.data?.gener) ?? "")
                             
                             self.emailLabel.text = Global_nurse_Email
                             self.nameLabel.text = Global_nurse_name

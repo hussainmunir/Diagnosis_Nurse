@@ -18,6 +18,8 @@ class SelectRoomVC: UIViewController,UITextFieldDelegate {
     var roomNumberArray = (1...25).map { String($0) }
     var castRoomArray = (1...8).map { String($0) }
     
+    var roomTypeArray = ["Room #", "Cast #"]
+    
     var roomPicker = UIPickerView()
     var castPicker = UIPickerView()
     
@@ -45,6 +47,7 @@ class SelectRoomVC: UIViewController,UITextFieldDelegate {
         label.text = "Select Cast Room"
         label.font = UIFont.systemFont(ofSize: 13)
         label.textColor = Color1
+        label.isHidden = true
         return label
     }( )
     let castRoomTextField : UITextField = {
@@ -54,6 +57,7 @@ class SelectRoomVC: UIViewController,UITextFieldDelegate {
         textF.textColor = Color1
         textF.layer.cornerRadius = 8
         textF.layer.borderWidth = 2
+        textF.isHidden = true
         textF.setLeftPaddingPoints(10)
         return textF
     }()
@@ -155,7 +159,7 @@ class SelectRoomVC: UIViewController,UITextFieldDelegate {
         
         roomPicker.delegate?.pickerView?(roomPicker, didSelectRow: roomPicker.selectedRow(inComponent: 0), inComponent: 0)
         
-        roomTextField.text = roomPicker.delegate?.pickerView?(roomPicker, titleForRow: roomPicker.selectedRow(inComponent: 0), forComponent: 0)
+        roomTextField.text = "\(roomPicker.delegate?.pickerView?(roomPicker, titleForRow: roomPicker.selectedRow(inComponent: 0), forComponent: 0) ?? "Room #") \(roomPicker.delegate?.pickerView?(roomPicker, titleForRow: roomPicker.selectedRow(inComponent: 1), forComponent: 1) ?? "1")"
         self.view.endEditing(true)
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -301,13 +305,22 @@ class SelectRoomVC: UIViewController,UITextFieldDelegate {
 
 extension SelectRoomVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        if pickerView == roomPicker {
+            return 2
+        } else {
         return 1
+        }
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         if pickerView == self.roomPicker
         {
-            return roomNumberArray.count
+            if component == 0 {
+                return roomTypeArray.count
+            }else if component == 1 {
+                return roomNumberArray.count
+            }else { return 1 }
+//            return roomNumberArray.count
         }
         if pickerView == self.castPicker
         {
@@ -322,7 +335,14 @@ extension SelectRoomVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         if pickerView == self.roomPicker
         {
-            return "Room # \(roomNumberArray[row])"
+            if component == 0 {
+                return (roomTypeArray[row])
+            }else if component == 1 {
+                return (roomNumberArray[row])
+            } else {
+                return ""
+            }
+//            return "Room # \(roomNumberArray[row])"
         }
         if pickerView == self.castPicker
         {
@@ -335,9 +355,13 @@ extension SelectRoomVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         if pickerView == self.roomPicker
         {
+            let roomTypeIndex = roomPicker.selectedRow(inComponent: 0)
+            let roomNumberIndex = roomPicker.selectedRow(inComponent: 1)
+            roomTextField.text = "\(roomTypeArray[roomTypeIndex]) \(roomNumberArray[roomNumberIndex])"
+            room = "\(roomTypeArray[roomTypeIndex]) \(roomNumberArray[roomNumberIndex])"
             
-            roomTextField.text = "Room # \(roomNumberArray[row])"
-            room = "Room # \(roomNumberArray[row])"
+//            roomTextField.text = "Room # \(roomNumberArray[row])"
+//            room = "Room # \(roomNumberArray[row])"
         }
         if pickerView == self.castPicker
         {

@@ -141,19 +141,19 @@ class WaitingListVC : UIViewController {
                     waitingListCommbineArrayAll = (jsonData?.data)!.reversed()
                     for v in waitingListCommbineArrayAll {
                         if v.waitingListType == "problem" {
-                        if v.problem!.roomNumber ?? "" == "" || v.problem!.castNumber ?? "" == "" {
+                        if v.problem!.roomNumber ?? "" == "" {
                             waitingListCommbineArray.append(v)
                         }
                         }
                         
                         if v.waitingListType == "followUp" {
-                        if v.followUp!.roomNumber ?? "" == "" || v.followUp!.castNumber ?? "" == "" {
+                        if v.followUp!.roomNumber ?? "" == "" {
                             waitingListCommbineArray.append(v)
                         }
                         }
                         
                         if v.waitingListType == "operation" {
-                        if v.postOp!.roomNumber ?? "" == "" || v.postOp!.castNumber ?? "" == "" {
+                        if v.postOp!.roomNumber ?? "" == "" {
                             waitingListCommbineArray.append(v)
                         }
                         }

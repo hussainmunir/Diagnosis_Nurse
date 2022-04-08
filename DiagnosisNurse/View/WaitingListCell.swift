@@ -79,9 +79,9 @@ class WaitingListCell : UICollectionViewCell {
         nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
         nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
         
-        typeLabel.bottomAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 25).isActive = true
+        typeLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 5).isActive = true
         typeLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 5).isActive = true
-        typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -15).isActive = true
+        typeLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -20).isActive = true
         
         menuImage.centerYAnchor.constraint(equalTo: contentView.centerYAnchor).isActive = true
         menuImage.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10).isActive = true

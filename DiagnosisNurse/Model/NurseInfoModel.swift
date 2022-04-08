@@ -8,11 +8,12 @@
 import Foundation
 import UIKit
 
-struct DoctorInfoModel : Decodable {
+struct NurseInfoModel : Decodable {
     
-    let data : DoctorInfoModelData?
+    let data : NurseInfoModelData?
+    let message : String?
 }
-struct DoctorInfoModelData : Decodable {
+struct NurseInfoModelData : Decodable {
     let _id : String?
     let name: String?
     let email: String?
@@ -24,5 +25,6 @@ struct DoctorInfoModelData : Decodable {
     let dea : String?
     let doctorId : String?
     let companyName : String?
+    let gener : String?
     
 }

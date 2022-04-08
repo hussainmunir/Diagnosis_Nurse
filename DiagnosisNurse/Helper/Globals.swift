@@ -13,9 +13,15 @@ struct K {
 static let mainURL = "http://ec2-44-202-39-201.compute-1.amazonaws.com:5000"
 }
 
+//struct K {
+//    static let mainURL = "http://2220-39-41-165-45.ngrok.io"
+//}
+
 var authToken : String = ""
 var tokencheck = false
 var getToken = String()
+
+let NavAppearance = UINavigationBarAppearance()
 
 var patient_ID = String()
 var doctor_ID = String()
@@ -68,6 +74,7 @@ var Global_nurse_phone = Int()
 var Global_nurse_companyName = String()
 var Global_nurse_dea = String()
 var Global_nurse_npi = String()
+var Global_nurse_gender = String()
 
 
 

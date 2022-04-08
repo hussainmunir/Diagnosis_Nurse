@@ -43,6 +43,9 @@
 		24950D2B27F45EC20093A22D /* XRayWaitingListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2A27F45EC20093A22D /* XRayWaitingListCell.swift */; };
 		24950D2D27F473EB0093A22D /* XRaysListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24950D2C27F473EB0093A22D /* XRaysListVC.swift */; };
 		BB8D89EC27FE167C00B72F9C /* PdfViewVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8D89EB27FE167C00B72F9C /* PdfViewVC.swift */; };
+		BB9D95AD27FF834E00826950 /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9D95AC27FF834E00826950 /* NotificationVC.swift */; };
+		BB9D95AF27FF83E000826950 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9D95AE27FF83E000826950 /* NotificationCell.swift */; };
+		BB9D95B127FF841C00826950 /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB9D95B027FF841C00826950 /* ProfileVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +87,9 @@
 		24950D2A27F45EC20093A22D /* XRayWaitingListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRayWaitingListCell.swift; sourceTree = "<group>"; };
 		24950D2C27F473EB0093A22D /* XRaysListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XRaysListVC.swift; sourceTree = "<group>"; };
 		BB8D89EB27FE167C00B72F9C /* PdfViewVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PdfViewVC.swift; sourceTree = "<group>"; };
+		BB9D95AC27FF834E00826950 /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		BB9D95AE27FF83E000826950 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		BB9D95B027FF841C00826950 /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,6 +151,8 @@
 				248564B327E8A8E6004F5049 /* VitalsVC.swift */,
 				248564BA27E8AD81004F5049 /* DiagnosticStudiesVC.swift */,
 				BB8D89EB27FE167C00B72F9C /* PdfViewVC.swift */,
+				BB9D95B027FF841C00826950 /* ProfileVC.swift */,
+				BB9D95AC27FF834E00826950 /* NotificationVC.swift */,
 				24950D2E27F473F20093A22D /* XRayList */,
 			);
 			path = Controller;
@@ -169,6 +177,7 @@
 				248564C627EB25E0004F5049 /* HPIReviewCell.swift */,
 				24950D2A27F45EC20093A22D /* XRayWaitingListCell.swift */,
 				248D826D27FC1B5A008EC246 /* PatientLabCell.swift */,
+				BB9D95AE27FF83E000826950 /* NotificationCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -273,13 +282,16 @@
 				2485649A27E850D0004F5049 /* ViewController.swift in Sources */,
 				248564D027F18153004F5049 /* FollowUpHpiReviewVC.swift in Sources */,
 				248564D427F1CCEB004F5049 /* SelectRoomVC.swift in Sources */,
+				BB9D95AD27FF834E00826950 /* NotificationVC.swift in Sources */,
 				248564BF27EB02FE004F5049 /* NurseDashboardVC.swift in Sources */,
 				248D827227FC7333008EC246 /* Media.swift in Sources */,
 				248564B627E8A9FC004F5049 /* TextField.swift in Sources */,
 				248564C527EB217A004F5049 /* PatientInfoModel.swift in Sources */,
 				248D827027FC42E0008EC246 /* XRayDetailsVC.swift in Sources */,
 				248564BD27E9D3B4004F5049 /* NewPatientReviewVC.swift in Sources */,
+				BB9D95B127FF841C00826950 /* ProfileVC.swift in Sources */,
 				248564AC27E855E6004F5049 /* Login.swift in Sources */,
+				BB9D95AF27FF83E000826950 /* NotificationCell.swift in Sources */,
 				248564D227F19051004F5049 /* PostOpHpiReviewVC.swift in Sources */,
 				24950D2B27F45EC20093A22D /* XRayWaitingListCell.swift in Sources */,
 				248564C327EB207C004F5049 /* WaitingListAllModel.swift in Sources */,
@@ -461,7 +473,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.macrosoar.DiagnosisNurse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -489,7 +501,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 3.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.macrosoar.DiagnosisNurse;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
