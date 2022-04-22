@@ -11,7 +11,7 @@ import PhotosUI
 
 class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDelegate {
     
-    let textViewXRayetail = UITextView(frame: CGRect.zero)
+    let textViewXRayDetail = UITextView(frame: CGRect.zero)
     var activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
     var VW_overlay: UIView = UIView()
     var pdfUrl : URL?
@@ -150,35 +150,35 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-         NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyboardWillBeHidden), name: UIResponder.keyboardWillHideNotification, object: nil)
         let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap))
-            view.addGestureRecognizer(tap) // Add gesture recognizer to background view
+        view.addGestureRecognizer(tap) // Add gesture recognizer to background view
         tap.cancelsTouchesInView = false
     }
     
     
     @objc func keyboardWillShow(notification: Notification) {
-     
+        
         if self.view.frame.origin.y == 0 {
             self.view.frame.origin.y -= 80
         }
         
     }
-        @objc func keyboardWillBeHidden(notification: NSNotification) {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y = 0
-            }
+    @objc func keyboardWillBeHidden(notification: NSNotification) {
+        if self.view.frame.origin.y != 0 {
+            self.view.frame.origin.y = 0
         }
-
+    }
+    
     
     @objc func handleTap() {
-        textViewXRayetail.resignFirstResponder() // dismiss keyoard
-           }
+        textViewXRayDetail.resignFirstResponder() // dismiss keyoard
+    }
     
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
         if text == "\n" {
-            textViewXRayetail.resignFirstResponder()
+            textViewXRayDetail.resignFirstResponder()
             return false
         }
         return true
@@ -189,10 +189,10 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         return false
     }
     
-
- 
+    
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
-
+        
         if textView.textColor == UIColor.lightGray {
             textView.text = ""
             textView.textColor = UIColor.black
@@ -284,7 +284,7 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
             alertsTextFieldStackView.trailingAnchor.constraint(equalTo: alertView.trailingAnchor,constant: -10),
             alertsTextFieldStackView.heightAnchor.constraint(equalTo: alertView.heightAnchor, multiplier: 0.5)
         ])
-        alertsTextFieldStackView.addArrangedSubview(textViewXRayetail)
+        alertsTextFieldStackView.addArrangedSubview(textViewXRayDetail)
         
         let alertButtonStackView = UIStackView()
         alertButtonStackView.translatesAutoresizingMaskIntoConstraints = false
@@ -311,27 +311,27 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         
         
         VW_overlay = UIView(frame: UIScreen.main.bounds)
-                        VW_overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
-                        activityIndicatorView = UIActivityIndicatorView(style: .large)
-                        activityIndicatorView.color = .white
-                        activityIndicatorView.frame = CGRect(x: 0, y: 0, width: activityIndicatorView.bounds.size.width, height: activityIndicatorView.bounds.size.height)
-
-                        activityIndicatorView.center = VW_overlay.center
-                        VW_overlay.addSubview(activityIndicatorView)
-                        VW_overlay.center = view.center
-                        view.addSubview(VW_overlay)
-
-                        activityIndicatorView.startAnimating()
-                        perform(#selector(self.pdfviewfunction), with: activityIndicatorView, afterDelay: 0.01)
+        VW_overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        activityIndicatorView = UIActivityIndicatorView(style: .large)
+        activityIndicatorView.color = .white
+        activityIndicatorView.frame = CGRect(x: 0, y: 0, width: activityIndicatorView.bounds.size.width, height: activityIndicatorView.bounds.size.height)
+        
+        activityIndicatorView.center = VW_overlay.center
+        VW_overlay.addSubview(activityIndicatorView)
+        VW_overlay.center = view.center
+        view.addSubview(VW_overlay)
+        
+        activityIndicatorView.startAnimating()
+        perform(#selector(self.pdfviewfunction), with: activityIndicatorView, afterDelay: 0.01)
     }
     
     
     @objc func pdfviewfunction() {
-          guard let url = URL(string: "\(K.mainURL)/api/v1/doctors/report/\(problem_id)")else {return}
-                 let urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
-                 let downloadTask = urlSession.downloadTask(with: url)
-                 downloadTask.resume()
-      }
+        guard let url = URL(string: "\(K.mainURL)/api/v1/doctors/report/\(problem_id)")else {return}
+        let urlSession = URLSession(configuration: .default, delegate: self, delegateQueue: OperationQueue())
+        let downloadTask = urlSession.downloadTask(with: url)
+        downloadTask.resume()
+    }
     
     
     @objc func cancelBtnAction() {
@@ -346,7 +346,7 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         alertView.isHidden = true
         blurView.isHidden = true
         
-        print(textViewXRayetail.text!)
+        print(textViewXRayDetail.text!)
         
     }
     
@@ -355,26 +355,26 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         activityIndicatorView = UIActivityIndicatorView(style: .large)
         activityIndicatorView.color = .white
         activityIndicatorView.frame = CGRect(x: 0, y: 0, width: activityIndicatorView.bounds.size.width, height: activityIndicatorView.bounds.size.height)
-
+        
         activityIndicatorView.center = VW_overlay.center
         VW_overlay.addSubview(activityIndicatorView)
         VW_overlay.center = view.center
         view.addSubview(VW_overlay)
-
+        
         activityIndicatorView.startAnimating()
         
         
         if waitingListCommbineArray[hpi_review_array_index_path].waitingListType == "problem" {
             perform(#selector(self.problemRoomChecking), with: activityIndicatorView, afterDelay: 0.01)
-//            problemRoomChecking()
+            //            problemRoomChecking()
         }
         else if waitingListCommbineArray[hpi_review_array_index_path].waitingListType == "followUp" {
             perform(#selector(self.followUpRoomChecking), with: activityIndicatorView, afterDelay: 0.01)
-//            followUpRoomChecking()
+            //            followUpRoomChecking()
         }
         else if waitingListCommbineArray[hpi_review_array_index_path].waitingListType == "operation" {
             perform(#selector(self.postOpRoomChecking), with: activityIndicatorView, afterDelay: 0.01)
-//            postOpRoomChecking()
+            //            postOpRoomChecking()
         }
         
     }
@@ -390,7 +390,7 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         let innerValue:[String:Any] = [
             //            "doctorId": "6182ac5bb19ea227705bc685",
             "roomNumber" : global_RoomNumber,
-//            "castNumber" : global_castRoom,
+            //            "castNumber" : global_castRoom,
             "vitals": vitalsDic_nurse
             
         ]
@@ -424,16 +424,16 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
                 }
                 
                 func alertFunction(vc: UIViewController,message: String){
-
-                   let alertControl = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+                    
+                    let alertControl = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
                     let alertAction = UIAlertAction(title: "OK", style: .cancel) { alert in
-//                        let alert: Void? =
+                        //                        let alert: Void? =
                         self.navigationController?.popToRootViewController(animated: true)
-
+                        
                     }
-                   alertControl.addAction(alertAction)
-                   vc.present(alertControl, animated: true, completion: nil)
-               }
+                    alertControl.addAction(alertAction)
+                    vc.present(alertControl, animated: true, completion: nil)
+                }
                 
                 
             }
@@ -445,28 +445,28 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
     
     @objc func doneBtnAlertAction() {
         
-                VW_overlay = UIView(frame: UIScreen.main.bounds)
-                VW_overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
+        VW_overlay = UIView(frame: UIScreen.main.bounds)
+        VW_overlay.backgroundColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.5)
         
-                activityIndicatorView = UIActivityIndicatorView(style: .large)
-                activityIndicatorView.color = .white
+        activityIndicatorView = UIActivityIndicatorView(style: .large)
+        activityIndicatorView.color = .white
         
-                activityIndicatorView.frame = CGRect(x: 0, y: 0, width: activityIndicatorView.bounds.size.width, height: activityIndicatorView.bounds.size.height)
+        activityIndicatorView.frame = CGRect(x: 0, y: 0, width: activityIndicatorView.bounds.size.width, height: activityIndicatorView.bounds.size.height)
         
-                activityIndicatorView.center = VW_overlay.center
-                VW_overlay.addSubview(activityIndicatorView)
-                VW_overlay.center = view.center
-                view.addSubview(VW_overlay)
+        activityIndicatorView.center = VW_overlay.center
+        VW_overlay.addSubview(activityIndicatorView)
+        VW_overlay.center = view.center
+        view.addSubview(VW_overlay)
         
-                activityIndicatorView.startAnimating()
-//                perform(#selector(self.finishFunc), with: activityIndicatorView, afterDelay: 1.9)
+        activityIndicatorView.startAnimating()
+        //                perform(#selector(self.finishFunc), with: activityIndicatorView, afterDelay: 1.9)
         
         
         let updLabs : [String:Any] = [
-
+            
             "name": "X-Ray",
             "date": "\(timeStamp)",
-            "description": textViewXRayetail.text ?? "",
+            "description": textViewXRayDetail.text ?? "",
             "patientId": patient_ID,
             "doctorId": doctor_ID,
             "patientName":patient_name,
@@ -477,10 +477,10 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
             
         ]
         
-//        print("images: \(lab_Photos)")
-//        print("pdfs: \(lab_docs)")
+        //        print("images: \(lab_Photos)")
+        //        print("pdfs: \(lab_docs)")
         
-      //  let mediaArray = [image]
+        //  let mediaArray = [image]
         
         guard let url = URL(string: "\(K.mainURL)/api/v1/patients/updatePatientLabs") else { return }
         var request = URLRequest(url: url)
@@ -493,24 +493,24 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         let session = URLSession.shared
         session.dataTask(with: request) { data, response, error in
             DispatchQueue.main.sync {
-              self.activityIndicatorView.stopAnimating()
-              self.VW_overlay.isHidden = true
+                self.activityIndicatorView.stopAnimating()
+                self.VW_overlay.isHidden = true
                 lab_Photos.removeAll()
                 lab_docs.removeAll()
             }
-
+            
             if let error = error {
                 print("error: \(error)")
             }else{
-  
+                
                 DispatchQueue.main.async {
-
+                    
                     print(updLabs)
-//                    self.navigationController?.pushViewController(ViewController(), animated: true)
+                    //                    self.navigationController?.pushViewController(ViewController(), animated: true)
                     self.alertView.isHidden = true
                     self.blurView.isHidden = true
                     alertFunc(vc: self, message: "X-Ray has been ordered successfully!")
-
+                    
                 }
             }
             
@@ -520,7 +520,7 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         return "Boundary-\(NSUUID().uuidString)"
     }
     func createDataBody(withParameters params: [String:Any]?, media: [Media]?, media1: [Media1]?, boundary:String) -> NSData {
-    
+        
         //let lineBreak = "\r\n"
         let body = NSMutableData()
         
@@ -550,8 +550,8 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
                 body.appendString(string: "\r\n")
             }
         }
-
-
+        
+        
         body.appendString(string: "--\(boundary)--\r\n")
         
         return body
@@ -561,7 +561,7 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         
         let innerValue:[String:Any] = [
             "roomNumber" : global_RoomNumber,
-//            "castNumber" : global_castRoom,
+            //            "castNumber" : global_castRoom,
             "vitals": vitalsDic_nurse
             
         ]
@@ -594,16 +594,16 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
                 }
                 
                 func alertFunction(vc: UIViewController,message: String){
-
-                   let alertControl = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+                    
+                    let alertControl = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
                     let alertAction = UIAlertAction(title: "OK", style: .cancel) { alert in
-//                        let alert: Void? =
+                        //                        let alert: Void? =
                         self.navigationController?.popToRootViewController(animated: true)
-
+                        
                     }
-                   alertControl.addAction(alertAction)
-                   vc.present(alertControl, animated: true, completion: nil)
-               }
+                    alertControl.addAction(alertAction)
+                    vc.present(alertControl, animated: true, completion: nil)
+                }
                 
                 
             }
@@ -616,11 +616,11 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
         
         let innerValue:[String:Any] = [
             "roomNumber" : global_RoomNumber,
-//            "castNumber" : global_castRoom,
+            //            "castNumber" : global_castRoom,
             "vitals": vitalsDic_nurse
             
         ]
-     
+        
         print(innerValue)
         
         guard let url = URL(string: "\(K.mainURL)/api/v1/nurse/addPatientRoomOperation/\(postOp_post_obj_ID)") else { return }
@@ -647,16 +647,16 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
                 }
                 
                 func alertFunction(vc: UIViewController,message: String){
-
-                   let alertControl = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
+                    
+                    let alertControl = UIAlertController(title: "Alert", message: message, preferredStyle: .alert)
                     let alertAction = UIAlertAction(title: "OK", style: .cancel) { alert in
-//                        let alert: Void? =
+                        //                        let alert: Void? =
                         self.navigationController?.popToRootViewController(animated: true)
-
+                        
                     }
-                   alertControl.addAction(alertAction)
-                   vc.present(alertControl, animated: true, completion: nil)
-               }
+                    alertControl.addAction(alertAction)
+                    vc.present(alertControl, animated: true, completion: nil)
+                }
                 
             }
             
@@ -665,19 +665,19 @@ class DiagnosticStudiesVC: UIViewController, URLSessionDelegate, UITextViewDeleg
 }
 
 extension NSMutableData {
-
+    
     func appendString(string: String) {
         let data = string.data(using: String.Encoding.utf8, allowLossyConversion: true)
         append(data!)
     }
-
+    
 }
 //extension
 extension DiagnosticStudiesVC : URLSessionDownloadDelegate {
     func urlSession(_ session: URLSession, downloadTask: URLSessionDownloadTask, didFinishDownloadingTo location: URL) {
         DispatchQueue.main.sync {
             activityIndicatorView.stopAnimating()
-                    VW_overlay.isHidden = true
+            VW_overlay.isHidden = true
         }
         print("File Downloaded Location- ",  location)
         
@@ -692,14 +692,14 @@ extension DiagnosticStudiesVC : URLSessionDownloadDelegate {
         do{
             try FileManager.default.copyItem(at: location, to: destinationPath)
             self.pdfUrl = destinationPath
-         
+            
             print("File Downloaded Location - ",  self.pdfUrl ?? "NOT")
             
-                DispatchQueue.main.async {
-                    self.dismiss(animated: true, completion: nil)
-                    let pdfView = PdfViewVC()
-                    pdfView.pdfURL = self.pdfUrl
-                    self.navigationController?.pushViewController(pdfView, animated: true)
+            DispatchQueue.main.async {
+                self.dismiss(animated: true, completion: nil)
+                let pdfView = PdfViewVC()
+                pdfView.pdfURL = self.pdfUrl
+                self.navigationController?.pushViewController(pdfView, animated: true)
             }
         }catch let error {
             print("Copy Error: \(error.localizedDescription)")

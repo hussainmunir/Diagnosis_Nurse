@@ -100,9 +100,35 @@ class NurseDashboardVC: UIViewController {
         button.layer.cornerRadius = 8
         button.layer.borderColor = Color1.cgColor
         button.layer.borderWidth = 2
-//        button.addTarget(self, action: #selector(signOutBtnAction), for: .touchUpInside)
+        button.addTarget(self, action: #selector(signOutBtnAction), for: .touchUpInside)
         return button
     }()
+    
+    let privacyBtn : UIButton = {
+        let button = UIButton( )
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Privacy Policy", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setTitleColor(Color1, for: .normal)
+//        button.layer.cornerRadius = 8
+//        button.layer.borderColor = UIColor.Color1.cgColor
+//        button.layer.borderWidth = 2
+        button.addTarget(self, action: #selector(privacyBtnAction), for: .touchUpInside)
+        return button
+    }( )
+    
+    let termsBtn : UIButton = {
+        let button = UIButton( )
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Terms of Use", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setTitleColor(Color1, for: .normal)
+//        button.layer.cornerRadius = 8
+//        button.layer.borderColor = UIColor.Color1.cgColor
+//        button.layer.borderWidth = 2
+        button.addTarget(self, action: #selector(termsBtnAction), for: .touchUpInside)
+        return button
+    }( )
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -167,7 +193,7 @@ class NurseDashboardVC: UIViewController {
                 do{
                     let jsonData = try JSONDecoder().decode(NurseInfoModel.self, from: data)
                     print(jsonData)
-                   if jsonData != nil {
+                    if jsonData != nil {
                       
                         DispatchQueue.main.async {
                           
@@ -275,6 +301,21 @@ class NurseDashboardVC: UIViewController {
 //        buttonStackView.addArrangedSubview(emptyView5)
 //        buttonStackView.addArrangedSubview(signOutBtn)
         
+        let bottomStack = UIStackView()
+        bottomStack.translatesAutoresizingMaskIntoConstraints = false
+        bottomStack.distribution = .fillEqually
+        centerView.addSubview(bottomStack)
+        NSLayoutConstraint.activate([
+            bottomStack.bottomAnchor.constraint(equalTo: centerView.bottomAnchor, constant: -5),
+            bottomStack.leadingAnchor.constraint(equalTo: centerView.safeAreaLayoutGuide.leadingAnchor),
+            bottomStack.trailingAnchor.constraint(equalTo: centerView.safeAreaLayoutGuide.trailingAnchor),
+            bottomStack.heightAnchor.constraint(equalToConstant: 40),
+            
+
+        ])
+        bottomStack.addArrangedSubview(privacyBtn)
+        bottomStack.addArrangedSubview(termsBtn)
+        
     }
 
     @objc func settingBtnAction() {
@@ -300,6 +341,16 @@ class NurseDashboardVC: UIViewController {
 
     }
   
+    @objc func privacyBtnAction() {
+        
+        self.navigationController?.pushViewController(PrivacyPolicyVC(), animated: true)
+    }
+    
+    @objc func termsBtnAction() {
+        
+        self.navigationController?.pushViewController(TermsOfUseVC(), animated: true)
+    }
+    
     
     @objc func signOutBtnAction() {
         UserDefaults.standard.removeObject(forKey: "token")

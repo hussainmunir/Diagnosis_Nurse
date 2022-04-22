@@ -88,7 +88,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
         let forgetPasswordbtn : UIButton = {
             let button = UIButton()
             button.translatesAutoresizingMaskIntoConstraints = false
-            button.setTitle("Forget Password", for: .normal)
+            button.setTitle("Forgot Password", for: .normal)
             button.setTitleColor(UIColor.white, for: .normal)
             button.titleLabel?.font = UIFont.systemFont(ofSize: 13)
             button.addTarget(self, action: #selector(forgetBtnAction), for: .touchUpInside)
@@ -109,6 +109,33 @@ class ViewController: UIViewController, UITextFieldDelegate {
             button.addTarget(self, action: #selector(checkBoxBtn), for: .touchUpInside)
             return button
         }()
+    
+    let privacyBtn : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Privacy Policy", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setTitleColor(UIColor.white, for: .normal)
+//        button.layer.cornerRadius = 8
+//        button.layer.borderColor = UIColor.Color1.cgColor
+//        button.layer.borderWidth = 2
+        button.addTarget(self, action: #selector(privacyBtnAction), for: .touchUpInside)
+        return button
+    }()
+    
+    let termsBtn : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Terms of Use", for: .normal)
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 16)
+        button.setTitleColor(UIColor.white, for: .normal)
+//        button.layer.cornerRadius = 8
+//        button.layer.borderColor = UIColor.Color1.cgColor
+//        button.layer.borderWidth = 2
+        button.addTarget(self, action: #selector(termsBtnAction), for: .touchUpInside)
+        return button
+    }()
+    
         
         var authObj:userAuth? = nil
         
@@ -215,6 +242,21 @@ class ViewController: UIViewController, UITextFieldDelegate {
             signInBtn.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor, constant: -35).isActive = true
             signInBtn.heightAnchor.constraint(equalToConstant: 45).isActive = true
             
+            let bottomStack = UIStackView()
+            bottomStack.translatesAutoresizingMaskIntoConstraints = false
+            bottomStack.distribution = .fillEqually
+            view.addSubview(bottomStack)
+            NSLayoutConstraint.activate([
+                bottomStack.topAnchor.constraint(equalTo: signInBtn.bottomAnchor, constant: 15),
+                bottomStack.leadingAnchor.constraint(equalTo: safeArea.leadingAnchor),
+                bottomStack.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor),
+                bottomStack.heightAnchor.constraint(equalToConstant: 30),
+                
+
+            ])
+            bottomStack.addArrangedSubview(privacyBtn)
+            bottomStack.addArrangedSubview(termsBtn)
+
           
         }
         
@@ -370,6 +412,24 @@ class ViewController: UIViewController, UITextFieldDelegate {
 
             
         }
+    
+    @objc func privacyBtnAction() {
+        
+        let vc = PrivacyLoginPageVC()
+             let nav = UINavigationController(rootViewController: vc)
+             nav.modalPresentationStyle = .fullScreen
+             self.present(nav, animated: true, completion: nil)
+
+    }
+    
+    @objc func termsBtnAction() {
+        
+        let vc = TermsLoginPageVC()
+             let nav = UINavigationController(rootViewController: vc)
+             nav.modalPresentationStyle = .fullScreen
+             self.present(nav, animated: true, completion: nil)
+        
+    }
         
         
     }

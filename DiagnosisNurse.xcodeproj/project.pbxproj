@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		247C58E8280E898600A7EA7B /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C58E7280E898600A7EA7B /* PrivacyPolicyVC.swift */; };
+		247C58EA280E898D00A7EA7B /* TermsOfUseVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C58E9280E898D00A7EA7B /* TermsOfUseVC.swift */; };
+		247C58EF280E8A5A00A7EA7B /* Diagnosis+ EULA and Provider Participation Agreement.html in Resources */ = {isa = PBXBuildFile; fileRef = 247C58ED280E8A5900A7EA7B /* Diagnosis+ EULA and Provider Participation Agreement.html */; };
+		247C58F0280E8A5A00A7EA7B /* Diagnosis+ Patient Participation.html in Resources */ = {isa = PBXBuildFile; fileRef = 247C58EE280E8A5A00A7EA7B /* Diagnosis+ Patient Participation.html */; };
+		247C58F6280EC60F00A7EA7B /* PrivacyLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C58F5280EC60F00A7EA7B /* PrivacyLoginVC.swift */; };
+		247C58F8280EC61F00A7EA7B /* TermsLoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 247C58F7280EC61F00A7EA7B /* TermsLoginVC.swift */; };
 		2485649627E850D0004F5049 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485649527E850D0004F5049 /* AppDelegate.swift */; };
 		2485649827E850D0004F5049 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485649727E850D0004F5049 /* SceneDelegate.swift */; };
 		2485649A27E850D0004F5049 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2485649927E850D0004F5049 /* ViewController.swift */; };
@@ -49,6 +55,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		247C58E7280E898600A7EA7B /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
+		247C58E9280E898D00A7EA7B /* TermsOfUseVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsOfUseVC.swift; sourceTree = "<group>"; };
+		247C58ED280E8A5900A7EA7B /* Diagnosis+ EULA and Provider Participation Agreement.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Diagnosis+ EULA and Provider Participation Agreement.html"; sourceTree = "<group>"; };
+		247C58EE280E8A5A00A7EA7B /* Diagnosis+ Patient Participation.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = "Diagnosis+ Patient Participation.html"; sourceTree = "<group>"; };
+		247C58F5280EC60F00A7EA7B /* PrivacyLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyLoginVC.swift; sourceTree = "<group>"; };
+		247C58F7280EC61F00A7EA7B /* TermsLoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsLoginVC.swift; sourceTree = "<group>"; };
 		2485649227E850D0004F5049 /* DiagnosisNurse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DiagnosisNurse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2485649527E850D0004F5049 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2485649727E850D0004F5049 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +142,8 @@
 				248564B827E8ABA9004F5049 /* Helper */,
 				2485649B27E850D0004F5049 /* Main.storyboard */,
 				2485649E27E850D2004F5049 /* Assets.xcassets */,
+				247C58ED280E8A5900A7EA7B /* Diagnosis+ EULA and Provider Participation Agreement.html */,
+				247C58EE280E8A5A00A7EA7B /* Diagnosis+ Patient Participation.html */,
 				248564A027E850D2004F5049 /* LaunchScreen.storyboard */,
 				248564A327E850D2004F5049 /* Info.plist */,
 			);
@@ -143,6 +157,10 @@
 				2485649927E850D0004F5049 /* ViewController.swift */,
 				248564AB27E855E5004F5049 /* Login.swift */,
 				248564BE27EB02FE004F5049 /* NurseDashboardVC.swift */,
+				247C58E7280E898600A7EA7B /* PrivacyPolicyVC.swift */,
+				247C58F5280EC60F00A7EA7B /* PrivacyLoginVC.swift */,
+				247C58E9280E898D00A7EA7B /* TermsOfUseVC.swift */,
+				247C58F7280EC61F00A7EA7B /* TermsLoginVC.swift */,
 				248564AF27E858EB004F5049 /* WaitingListVC.swift */,
 				248564BC27E9D3B4004F5049 /* NewPatientReviewVC.swift */,
 				248564CF27F18153004F5049 /* FollowUpHpiReviewVC.swift */,
@@ -264,6 +282,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				247C58EF280E8A5A00A7EA7B /* Diagnosis+ EULA and Provider Participation Agreement.html in Resources */,
+				247C58F0280E8A5A00A7EA7B /* Diagnosis+ Patient Participation.html in Resources */,
 				248564A227E850D2004F5049 /* LaunchScreen.storyboard in Resources */,
 				2485649F27E850D2004F5049 /* Assets.xcassets in Resources */,
 				2485649D27E850D0004F5049 /* Main.storyboard in Resources */,
@@ -283,6 +303,7 @@
 				248564D027F18153004F5049 /* FollowUpHpiReviewVC.swift in Sources */,
 				248564D427F1CCEB004F5049 /* SelectRoomVC.swift in Sources */,
 				BB9D95AD27FF834E00826950 /* NotificationVC.swift in Sources */,
+				247C58E8280E898600A7EA7B /* PrivacyPolicyVC.swift in Sources */,
 				248564BF27EB02FE004F5049 /* NurseDashboardVC.swift in Sources */,
 				248D827227FC7333008EC246 /* Media.swift in Sources */,
 				248564B627E8A9FC004F5049 /* TextField.swift in Sources */,
@@ -298,10 +319,13 @@
 				248564D627F1D5A0004F5049 /* WaitingListCell.swift in Sources */,
 				248564C727EB25E0004F5049 /* HPIReviewCell.swift in Sources */,
 				248564B427E8A8E6004F5049 /* VitalsVC.swift in Sources */,
+				247C58EA280E898D00A7EA7B /* TermsOfUseVC.swift in Sources */,
 				248564BB27E8AD81004F5049 /* DiagnosticStudiesVC.swift in Sources */,
 				24950D2D27F473EB0093A22D /* XRaysListVC.swift in Sources */,
 				248564AA27E8533E004F5049 /* ThemeColor.swift in Sources */,
+				247C58F8280EC61F00A7EA7B /* TermsLoginVC.swift in Sources */,
 				24950D2927F45E620093A22D /* XRayWaitingListVC.swift in Sources */,
+				247C58F6280EC60F00A7EA7B /* PrivacyLoginVC.swift in Sources */,
 				2485649627E850D0004F5049 /* AppDelegate.swift in Sources */,
 				BB8D89EC27FE167C00B72F9C /* PdfViewVC.swift in Sources */,
 				2485649827E850D0004F5049 /* SceneDelegate.swift in Sources */,

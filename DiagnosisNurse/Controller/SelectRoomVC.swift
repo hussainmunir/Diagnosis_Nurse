@@ -102,8 +102,9 @@ class SelectRoomVC: UIViewController,UITextFieldDelegate {
         castRoomTextField.inputView = castPicker
         roomTextField.inputView = roomPicker
         
-        
-        
+//        self.roomPicker = UIPickerView(frame:CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 216))
+        roomPicker.frame = CGRect(x: 50, y: 0, width: 100, height: 250.0)
+
         
         castPicker.delegate = self
         roomPicker.delegate = self
@@ -370,6 +371,10 @@ extension SelectRoomVC: UIPickerViewDelegate, UIPickerViewDataSource {
             castRoomNumber = "Cast Room # \(castRoomArray[row])"
         }
         
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return CGFloat(100.0)
     }
 }
 

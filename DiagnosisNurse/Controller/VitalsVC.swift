@@ -633,6 +633,10 @@ extension VitalsVC: UIPickerViewDelegate, UIPickerViewDataSource {
         }
         
     }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        return CGFloat(100.0)
+    }
 }
 extension VitalsVC {
     
