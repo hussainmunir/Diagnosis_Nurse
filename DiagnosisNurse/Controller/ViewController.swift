@@ -298,7 +298,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
                                 authToken = jsonData!.token!
                             }
                               DispatchQueue.main.sync {
-                                  let waitingListVC = NurseDashboardVC()
+                                  let waitingListVC = NurseTabVC()
                                        let nav = UINavigationController(rootViewController: waitingListVC)
                                        nav.modalPresentationStyle = .fullScreen
                                        self.present(nav, animated: true, completion: nil)
