@@ -36,6 +36,7 @@ class ViewController: UIViewController, UITextFieldDelegate {
             textf.textColor = UIColor.white
             textf.textAlignment = .center
             textf.autocapitalizationType = .none
+            textf.autocorrectionType = .no
             textf.translatesAutoresizingMaskIntoConstraints = false
             return textf
         }()
