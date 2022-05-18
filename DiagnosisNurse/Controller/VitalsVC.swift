@@ -12,6 +12,9 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
     let scrollView = UIScrollView()
     let contentView = UIView()
     
+    var cardiovascularType = String()
+    var pulmonaryType = String()
+    
     var bmi = Float()
     
     var weight = (0...600).map { String($0) }
@@ -70,7 +73,7 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         label.textColor = Color1
         return label
     }( )
-    let weightTextField : UITextField = {
+    lazy var weightTextField : UITextField = {
         let textF = UITextField()
         textF.translatesAutoresizingMaskIntoConstraints = false
         textF.layer.borderColor = Color1.cgColor
@@ -157,8 +160,148 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         textF.setLeftPaddingPoints(10)
         return textF
     }()
+    
+    let cardiovascularLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Cardiovascular"
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textColor = Color1
+        return label
+    }()
+    
+    var regularRateCheck = false
+    lazy var regularRateBtn : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Regular rate and rhythm", for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 2
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.layer.borderColor = Color1.cgColor
+        button.setTitleColor(Color1, for: .normal)
+        button.backgroundColor = Color2
+        button.addTarget(self, action: #selector(regularRateAction), for: .touchUpInside)
+        return button
+    }()
+    
+    var irregularRateCheck = false
+    lazy var irregularRateBtn : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Irregular rate and rhythm", for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 2
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.layer.borderColor = Color1.cgColor
+        button.setTitleColor(Color1, for: .normal)
+        button.backgroundColor = Color2
+        button.addTarget(self, action: #selector(irregularRateAction), for: .touchUpInside)
+        return button
+    }()
+    
+    var murmurCheck = false
+    lazy var murmurBtn : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Murmur", for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 2
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.layer.borderColor = Color1.cgColor
+        button.setTitleColor(Color1, for: .normal)
+        button.backgroundColor = Color2
+        button.addTarget(self, action: #selector(murmurAction), for: .touchUpInside)
+        return button
+    }()
+    
+    var gallopCheck = false
+    lazy var gallopBtn : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Gallop", for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 2
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.layer.borderColor = Color1.cgColor
+        button.setTitleColor(Color1, for: .normal)
+        button.backgroundColor = Color2
+        button.addTarget(self, action: #selector(gallopAction), for: .touchUpInside)
+        return button
+    }()
+    
+    var rubCheck = false
+    lazy var rubBtn : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Rub", for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 2
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.layer.borderColor = Color1.cgColor
+        button.setTitleColor(Color1, for: .normal)
+        button.backgroundColor = Color2
+        button.addTarget(self, action: #selector(rubAction), for: .touchUpInside)
+        return button
+    }()
+
+    let pulmonaryLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Pulmonary"
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textColor = Color1
+        return label
+    }()
+    
+    var wheezesCheck = false
+    lazy var wheezesBtn : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Wheezes", for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 2
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.layer.borderColor = Color1.cgColor
+        button.setTitleColor(Color1, for: .normal)
+        button.backgroundColor = Color2
+        button.addTarget(self, action: #selector(wheezesAction), for: .touchUpInside)
+        return button
+    }()
+    
+    var cracklesCheck = false
+    lazy var cracklesBtn : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Crackles", for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 2
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.layer.borderColor = Color1.cgColor
+        button.setTitleColor(Color1, for: .normal)
+        button.backgroundColor = Color2
+        button.addTarget(self, action: #selector(cracklesAction), for: .touchUpInside)
+        return button
+    }()
+    
+    var ctabCheck = false
+    lazy var ctabBtn : UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("CTAB", for: .normal)
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 2
+        button.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        button.layer.borderColor = Color1.cgColor
+        button.setTitleColor(Color1, for: .normal)
+        button.backgroundColor = Color2
+        button.addTarget(self, action: #selector(ctabAction), for: .touchUpInside)
+        return button
+    }()
+    
+    
   
-    let nextBtn : UIButton = {
+    lazy var nextBtn : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = Color2
@@ -168,7 +311,7 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         button.addTarget(self, action: #selector(nextBtnAction), for: .touchUpInside)
         return button
     }()
-    let backBtn : UIButton = {
+    lazy var backBtn : UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.backgroundColor = Color2
@@ -386,13 +529,13 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         scrollView.widthAnchor.constraint(equalTo: view.widthAnchor).isActive = true
         scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         
         scrollView.addSubview(contentView)
         contentView.backgroundColor = Color1
         contentView.translatesAutoresizingMaskIntoConstraints = false
         contentView.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-        contentView.heightAnchor.constraint(equalToConstant: 720).isActive = true
+        contentView.heightAnchor.constraint(equalToConstant: 1100).isActive = true
         contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
         contentView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         contentView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
@@ -419,7 +562,7 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         backBtn.heightAnchor.constraint(equalToConstant: 30).isActive = true
         backBtn.widthAnchor.constraint(equalToConstant: 70).isActive = true
         
-        let blueView = UIView()
+        let blueView = UIView( )
         contentView.addSubview(blueView)
         blueView.translatesAutoresizingMaskIntoConstraints = false
         blueView.backgroundColor = Color2
@@ -428,7 +571,7 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         blueView.widthAnchor.constraint(equalTo: contentView.widthAnchor).isActive = true
         blueView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor).isActive = true
         blueView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
-        blueView.heightAnchor.constraint(equalToConstant: 950).isActive = true
+        blueView.heightAnchor.constraint(equalToConstant: 1500).isActive = true
         blueView.bottomAnchor.constraint(equalTo: bottomView.topAnchor).isActive = true
         
         //--------height--------
@@ -524,7 +667,242 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         respiratoryRateTextField.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         respiratoryRateTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
+        blueView.addSubview(cardiovascularLabel)
+        cardiovascularLabel.topAnchor.constraint(equalTo: respiratoryRateTextField.bottomAnchor,constant: 20).isActive = true
+        cardiovascularLabel.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        cardiovascularLabel.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        cardiovascularLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        let stackView1 = UIStackView()
+        blueView.addSubview(stackView1)
+        stackView1.distribution = .fillEqually
+        stackView1.spacing = 10
+        stackView1.translatesAutoresizingMaskIntoConstraints = false
+        stackView1.topAnchor.constraint(equalTo: cardiovascularLabel.bottomAnchor, constant: 10).isActive = true
+        stackView1.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        stackView1.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        stackView1.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        stackView1.addArrangedSubview(regularRateBtn)
+        stackView1.addArrangedSubview(irregularRateBtn)
+        
+        let stackView2 = UIStackView()
+        blueView.addSubview(stackView2)
+        stackView2.distribution = .fillEqually
+        stackView2.spacing = 10
+        stackView2.translatesAutoresizingMaskIntoConstraints = false
+        stackView2.topAnchor.constraint(equalTo: stackView1.bottomAnchor, constant: 10).isActive = true
+        stackView2.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        stackView2.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        stackView2.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        stackView2.addArrangedSubview(murmurBtn)
+        stackView2.addArrangedSubview(gallopBtn)
+        stackView2.addArrangedSubview(rubBtn)
+        
+        blueView.addSubview(pulmonaryLabel)
+        pulmonaryLabel.topAnchor.constraint(equalTo: stackView2.bottomAnchor,constant: 20).isActive = true
+        pulmonaryLabel.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        pulmonaryLabel.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        pulmonaryLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        let stackView3 = UIStackView()
+        blueView.addSubview(stackView3)
+        stackView3.distribution = .fillEqually
+        stackView3.spacing = 10
+        stackView3.translatesAutoresizingMaskIntoConstraints = false
+        stackView3.topAnchor.constraint(equalTo: pulmonaryLabel.bottomAnchor, constant: 10).isActive = true
+        stackView3.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 10).isActive = true
+        stackView3.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -10).isActive = true
+        stackView3.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        stackView3.addArrangedSubview(ctabBtn)
+        stackView3.addArrangedSubview(cracklesBtn)
+        stackView3.addArrangedSubview(wheezesBtn)
 
+    }
+    
+    @objc func regularRateAction(){
+        if regularRateCheck == false {
+            regularRateBtn.backgroundColor = Color1
+            regularRateBtn.setTitleColor(Color2, for: .normal)
+            regularRateCheck = true
+            irregularRateBtn.backgroundColor = Color2
+            irregularRateBtn.setTitleColor(Color1, for: .normal)
+            irregularRateCheck = false
+            murmurBtn.backgroundColor = Color2
+            murmurBtn.setTitleColor(Color1, for: .normal)
+            murmurCheck = false
+            gallopBtn.backgroundColor = Color2
+            gallopBtn.setTitleColor(Color1, for: .normal)
+            gallopCheck = false
+            rubBtn.backgroundColor = Color2
+            rubBtn.setTitleColor(Color1, for: .normal)
+            rubCheck = false
+            
+        }else{
+            regularRateBtn.backgroundColor = Color2
+            regularRateBtn.setTitleColor(Color1, for: .normal)
+            regularRateCheck = false
+        }
+    }
+    
+    @objc func irregularRateAction(){
+        if irregularRateCheck == false {
+            irregularRateBtn.backgroundColor = Color1
+            irregularRateBtn.setTitleColor(Color2, for: .normal)
+            irregularRateCheck = true
+            regularRateBtn.backgroundColor = Color2
+            regularRateBtn.setTitleColor(Color1, for: .normal)
+            regularRateCheck = false
+            murmurBtn.backgroundColor = Color2
+            murmurBtn.setTitleColor(Color1, for: .normal)
+            murmurCheck = false
+            gallopBtn.backgroundColor = Color2
+            gallopBtn.setTitleColor(Color1, for: .normal)
+            gallopCheck = false
+            rubBtn.backgroundColor = Color2
+            rubBtn.setTitleColor(Color1, for: .normal)
+            rubCheck = false
+            
+        }else{
+            irregularRateBtn.backgroundColor = Color2
+            irregularRateBtn.setTitleColor(Color1, for: .normal)
+            irregularRateCheck = false
+        }
+    }
+    
+    @objc func murmurAction(){
+        if murmurCheck == false {
+            murmurBtn.backgroundColor = Color1
+            murmurBtn.setTitleColor(Color2, for: .normal)
+            murmurCheck = true
+            regularRateBtn.backgroundColor = Color2
+            regularRateBtn.setTitleColor(Color1, for: .normal)
+            regularRateCheck = false
+            irregularRateBtn.backgroundColor = Color2
+            irregularRateBtn.setTitleColor(Color1, for: .normal)
+            irregularRateCheck = false
+            gallopBtn.backgroundColor = Color2
+            gallopBtn.setTitleColor(Color1, for: .normal)
+            gallopCheck = false
+            rubBtn.backgroundColor = Color2
+            rubBtn.setTitleColor(Color1, for: .normal)
+            rubCheck = false
+            
+        }else{
+            murmurBtn.backgroundColor = Color2
+            murmurBtn.setTitleColor(Color1, for: .normal)
+            murmurCheck = false
+        }
+    }
+    
+    @objc func gallopAction(){
+        
+        if gallopCheck == false {
+            gallopBtn.backgroundColor = Color1
+            gallopBtn.setTitleColor(Color2, for: .normal)
+            gallopCheck = true
+            regularRateBtn.backgroundColor = Color2
+            regularRateBtn.setTitleColor(Color1, for: .normal)
+            regularRateCheck = false
+            irregularRateBtn.backgroundColor = Color2
+            irregularRateBtn.setTitleColor(Color1, for: .normal)
+            irregularRateCheck = false
+            murmurBtn.backgroundColor = Color2
+            murmurBtn.setTitleColor(Color1, for: .normal)
+            murmurCheck = false
+            rubBtn.backgroundColor = Color2
+            rubBtn.setTitleColor(Color1, for: .normal)
+            rubCheck = false
+            
+        }else{
+            gallopBtn.backgroundColor = Color2
+            gallopBtn.setTitleColor(Color1, for: .normal)
+            gallopCheck = false
+        }
+    }
+    
+    @objc func rubAction(){
+        if rubCheck == false {
+            rubBtn.backgroundColor = Color1
+            rubBtn.setTitleColor(Color2, for: .normal)
+            rubCheck = true
+            regularRateBtn.backgroundColor = Color2
+            regularRateBtn.setTitleColor(Color1, for: .normal)
+            regularRateCheck = false
+            irregularRateBtn.backgroundColor = Color2
+            irregularRateBtn.setTitleColor(Color1, for: .normal)
+            irregularRateCheck = false
+            murmurBtn.backgroundColor = Color2
+            murmurBtn.setTitleColor(Color1, for: .normal)
+            murmurCheck = false
+            gallopBtn.backgroundColor = Color2
+            gallopBtn.setTitleColor(Color1, for: .normal)
+            gallopCheck = false
+            
+        }else{
+            rubBtn.backgroundColor = Color2
+            rubBtn.setTitleColor(Color1, for: .normal)
+            rubCheck = false
+        }
+    }
+    
+    @objc func ctabAction(){
+        if ctabCheck == false {
+            ctabBtn.backgroundColor = Color1
+            ctabBtn.setTitleColor(Color2, for: .normal)
+            ctabCheck = true
+            cracklesBtn.backgroundColor = Color2
+            cracklesBtn.setTitleColor(Color1, for: .normal)
+            cracklesCheck = false
+            wheezesBtn.backgroundColor = Color2
+            wheezesBtn.setTitleColor(Color1, for: .normal)
+            wheezesCheck = false
+            
+        }else{
+            ctabBtn.backgroundColor = Color2
+            ctabBtn.setTitleColor(Color1, for: .normal)
+            ctabCheck = false
+        }
+        
+    }
+    
+    
+    @objc func cracklesAction(){
+        
+        if cracklesCheck == false {
+            cracklesBtn.backgroundColor = Color1
+            cracklesBtn.setTitleColor(Color2, for: .normal)
+            cracklesCheck = true
+            ctabBtn.backgroundColor = Color2
+            ctabBtn.setTitleColor(Color1, for: .normal)
+            ctabCheck = false
+            wheezesBtn.backgroundColor = Color2
+            wheezesBtn.setTitleColor(Color1, for: .normal)
+            wheezesCheck = false
+            
+        }else{
+            cracklesBtn.backgroundColor = Color2
+            cracklesBtn.setTitleColor(Color1, for: .normal)
+            cracklesCheck = false
+        }
+    }
+    
+    @objc func wheezesAction(){
+        if wheezesCheck == false {
+            wheezesBtn.backgroundColor = Color1
+            wheezesBtn.setTitleColor(Color2, for: .normal)
+            wheezesCheck = true
+            ctabBtn.backgroundColor = Color2
+            ctabBtn.setTitleColor(Color1, for: .normal)
+            ctabCheck = false
+            cracklesBtn.backgroundColor = Color2
+            cracklesBtn.setTitleColor(Color1, for: .normal)
+            cracklesCheck = false
+            
+        }else{
+            wheezesBtn.backgroundColor = Color2
+            wheezesBtn.setTitleColor(Color1, for: .normal)
+            wheezesCheck = false
+        }
     }
     
     @objc func weightFunction() {
@@ -537,14 +915,46 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
     }
     @objc func nextBtnAction() {
         
+        if regularRateCheck {
+            cardiovascularType = "Regular rate and rhythm"
+        }
+        else if irregularRateCheck {
+            cardiovascularType = "Irregular rate and rhythm"
+        }
+        else if murmurCheck {
+            cardiovascularType = "Murmur"
+            
+        }
+        else if gallopCheck {
+            cardiovascularType = "Gallop"
+            
+        }
+        else if rubCheck {
+            cardiovascularType = "Rub"
+            
+        }
+        
+        if ctabCheck {
+            pulmonaryType = "CTAB"
+        }
+        else if cracklesCheck {
+            pulmonaryType = "Crackles"
+        }
+        else if wheezesCheck {
+            pulmonaryType = "Wheezes"
+            
+        }
+        
+        
         vitalsDic_nurse = [
         "height" : heightTextField.text ?? "",
         "weight" : weightTextField.text ?? "",
         "BP" : bloodPressureTextField.text ?? "",
         "heartrate" : heartRateTextField.text ?? "",
         "BMI" : calcLabel.text ?? "",
-        "respiratory" : respiratoryRateTextField.text ?? ""
-        
+        "respiratory" : respiratoryRateTextField.text ?? "",
+        "cardiovascular": cardiovascularType,
+        "pulmonary": pulmonaryType
     ]
         self.navigationController?.pushViewController(DiagnosticStudiesVC(), animated: true)
     }
