@@ -162,7 +162,7 @@ struct OperationModel: Decodable {
     let _id: String?
     let patientAmbulating: PatientAmbulating?
     let isChecked: Bool?
-    let patientAdmits, surgicalSiteExam, rangeOfMotion: [String]?
+    let patientAdmits, rangeOfMotion: [String]?
     let patientId, doctorId, problemId, companyName: String?
     let painScale, painCondition: String?
     let muscularStrengthTesting, reflexes: [MuscularStrengthTesting]?
