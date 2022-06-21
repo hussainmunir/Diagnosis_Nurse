@@ -22,6 +22,9 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
     
     var bp1 = (0...300).map { String($0) }
     var bp2 = (0...200).map { String($0) }
+    var temperature = (95...105).map { String($0) }
+    var temperature2 = (0...9).map { String($0) }
+
     
     let numberOfComponents = 2
 
@@ -46,6 +49,28 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
     var heartRatePicker = UIPickerView()
     var bpPicker = UIPickerView()
     var respiratoryRatePicker = UIPickerView()
+    var temperaturePicker = UIPickerView()
+
+    
+    let temperatureLabel : UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.text = "Temperature"
+        label.font = UIFont.systemFont(ofSize: 13)
+        label.textColor = Color1
+        return label
+    }( )
+    let temperatureTextField : UITextField = {
+        let textF = UITextField()
+        textF.translatesAutoresizingMaskIntoConstraints = false
+        textF.layer.borderColor = Color1.cgColor
+        textF.textColor = Color1
+        textF.layer.cornerRadius = 8
+        textF.layer.borderWidth = 2
+        textF.setLeftPaddingPoints(10)
+        return textF
+    }()
+    
     
     let heightLabel : UILabel = {
         let label = UILabel()
@@ -336,7 +361,7 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         weightTextField.delegate = self
         bloodPressureTextField.delegate = self
         heartRateTextField.delegate = self
-  //      bmiTextField.delegate = self
+        temperatureTextField.delegate = self
         respiratoryRateTextField.delegate = self
         setUpLayout()
         
@@ -347,6 +372,7 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         heartRateTextField.inputView = heartRatePicker
         bloodPressureTextField.inputView = bpPicker
         respiratoryRateTextField.inputView = respiratoryRatePicker
+        temperatureTextField.inputView = temperaturePicker
         
 
         
@@ -360,13 +386,16 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         respiratoryRatePicker.dataSource = self
         bpPicker.delegate = self
         bpPicker.dataSource = self
+        temperaturePicker.delegate = self
+        temperaturePicker.dataSource = self
         
         weightPicker.tag = 1
         heightPicker.tag = 2
         heartRatePicker.tag = 3
         respiratoryRatePicker.tag = 4
         bpPicker.tag = 5
-        
+        temperaturePicker.tag = 6
+
 //        addDoneButtonOnKeyboard()
 //        heightMetricImperial = {
 //            return (height).map {
@@ -379,7 +408,9 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         heartRatePicker.selectRow(70, inComponent: 0, animated: true)
         bpPicker.selectRow(120, inComponent: 0, animated: true)
         bpPicker.selectRow(80, inComponent: 1, animated: true)
-        
+        temperaturePicker.selectRow(3, inComponent: 0, animated: true)
+        temperaturePicker.selectRow(6, inComponent: 1, animated: true)
+
 
                
         let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -392,6 +423,13 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         toolbarWeight.setItems([flexSpace, barbtnWeight], animated: true)
         weightTextField.inputAccessoryView = toolbarWeight
         
+        
+        let toolbarTemperature = UIToolbar()
+        toolbarTemperature.sizeToFit()
+        // bar button
+        let barbtnTemperature = UIBarButtonItem(barButtonSystemItem: .done, target: nil, action: #selector(donePressTemperature))
+        toolbarTemperature.setItems([flexSpace, barbtnTemperature], animated: true)
+        temperatureTextField.inputAccessoryView = toolbarTemperature
         
         // toolbar Height
         let toolbarHeight = UIToolbar()
@@ -443,6 +481,20 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
  //       calcBMI()
 
      }
+    
+    @objc func donePressTemperature(){
+        
+        temperaturePicker.delegate?.pickerView?(temperaturePicker, didSelectRow: temperaturePicker.selectedRow(inComponent: 0), inComponent: 0)
+//        temperatureTextField.text = temperaturePicker.delegate?.pickerView?(temperaturePicker, titleForRow: temperaturePicker.selectedRow(inComponent: 0), forComponent: 0)
+        
+        let temperature1Index = temperaturePicker.selectedRow(inComponent: 0)
+        let temperature2Index = temperaturePicker.selectedRow(inComponent: 1)
+        bloodPressureTextField.text = "\(temperature[temperature1Index]).\(temperature2[temperature2Index])°F"
+        
+        self.view.endEditing(true)
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+    }
     
     @objc func donePressHeight(){
 
@@ -573,10 +625,24 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         blueView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor).isActive = true
         blueView.heightAnchor.constraint(equalToConstant: 1500).isActive = true
         blueView.bottomAnchor.constraint(equalTo: bottomView.topAnchor).isActive = true
+       
+        //--------temperature--------
+
+        blueView.addSubview(temperatureLabel)
+        temperatureLabel.topAnchor.constraint(equalTo: blueView.topAnchor,constant: 20).isActive = true
+        temperatureLabel.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        temperatureLabel.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        temperatureLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        contentView.addSubview(temperatureTextField)
+        temperatureTextField.topAnchor.constraint(equalTo: temperatureLabel.bottomAnchor, constant:10).isActive = true
+        temperatureTextField.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        temperatureTextField.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        temperatureTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
         //--------height--------
         blueView.addSubview(heightLabel)
-        heightLabel.topAnchor.constraint(equalTo: blueView.topAnchor,constant: 20).isActive = true
+        heightLabel.topAnchor.constraint(equalTo: temperatureTextField.bottomAnchor,constant: 20).isActive = true
         heightLabel.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
         heightLabel.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         heightLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
@@ -599,14 +665,14 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         weightTextField.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         weightTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
         
-//        --------bmi-------
-             blueView.addSubview(bmiLabel)
-             bmiLabel.topAnchor.constraint(equalTo: weightTextField.bottomAnchor,constant: 20).isActive = true
-             bmiLabel.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-             bmiLabel.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-             bmiLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-     
-             contentView.addSubview(calcLabel)
+        //        --------bmi-------
+        blueView.addSubview(bmiLabel)
+        bmiLabel.topAnchor.constraint(equalTo: weightTextField.bottomAnchor,constant: 20).isActive = true
+        bmiLabel.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        bmiLabel.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
+        bmiLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
+        
+        contentView.addSubview(calcLabel)
         calcLabel.topAnchor.constraint(equalTo: bmiLabel.bottomAnchor, constant:10).isActive = true
         calcLabel.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
         calcLabel.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
@@ -636,25 +702,8 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         heartRateTextField.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
         heartRateTextField.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
         heartRateTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        //--------bmi-------
-//        blueView.addSubview(bmiLabel)
-//        bmiLabel.topAnchor.constraint(equalTo: heartRateTextField.bottomAnchor,constant: 20).isActive = true
-//        bmiLabel.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-//        bmiLabel.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-//        bmiLabel.heightAnchor.constraint(equalToConstant: 20).isActive = true
-//
-//        contentView.addSubview(bmiBtn)
-//        bmiBtn.topAnchor.constraint(equalTo: bmiLabel.bottomAnchor, constant:10).isActive = true
-//        bmiBtn.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-//        bmiBtn.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-//        bmiBtn.heightAnchor.constraint(equalToConstant: 50).isActive = true
+   
         
-//        contentView.addSubview(bmiTextField)
-//        bmiTextField.topAnchor.constraint(equalTo: bmiLabel.bottomAnchor, constant:10).isActive = true
-//        bmiTextField.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
-//        bmiTextField.trailingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.trailingAnchor, constant: -20).isActive = true
-//        bmiTextField.heightAnchor.constraint(equalToConstant: 50).isActive = true
-//        //--------repository rate--------
         blueView.addSubview(respiratoryRateLabel)
         respiratoryRateLabel.topAnchor.constraint(equalTo: heartRateTextField.bottomAnchor,constant: 20).isActive = true
         respiratoryRateLabel.leadingAnchor.constraint(equalTo: blueView.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
@@ -947,6 +996,7 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
         
         
         vitalsDic_nurse = [
+            "temperature": temperatureTextField.text ?? "",
         "height" : heightTextField.text ?? "",
         "weight" : weightTextField.text ?? "",
         "BP" : bloodPressureTextField.text ?? "",
@@ -963,10 +1013,10 @@ class VitalsVC: UIViewController,UITextFieldDelegate {
 
 extension VitalsVC: UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        if pickerView == bpPicker {
+        if pickerView == bpPicker || pickerView == temperaturePicker {
             return numberOfComponents
         } else {
-        return 1
+            return 1
         }
     }
     
@@ -985,6 +1035,13 @@ extension VitalsVC: UIPickerViewDelegate, UIPickerViewDataSource {
                 return bp1.count
             }else if component == 1 {
                 return bp2.count
+            }else { return 1 }
+        case 6:
+//            return temperature.count
+            if component == 0 {
+                return temperature.count
+            }else if component == 1 {
+                return temperature2.count
             }else { return 1 }
         default:
             return 1
@@ -1008,6 +1065,16 @@ extension VitalsVC: UIPickerViewDelegate, UIPickerViewDataSource {
                 return (bp1[row])
             }else if component == 1 {
                 return (bp2[row])
+            } else {
+                return ""
+            }
+        case 6:
+//            return "\(temperature[row])°F"
+            
+            if component == 0 {
+                return "\(temperature[row])"
+            }else if component == 1 {
+                return "\(temperature2[row])"
             } else {
                 return ""
             }
@@ -1038,6 +1105,11 @@ extension VitalsVC: UIPickerViewDelegate, UIPickerViewDataSource {
             let bp1Index = bpPicker.selectedRow(inComponent: 0)
             let bp2Index = bpPicker.selectedRow(inComponent: 1)
             bloodPressureTextField.text = "\(bp1[bp1Index]) / \(bp2[bp2Index])"
+        case 6:
+            let temperature1Index = temperaturePicker.selectedRow(inComponent: 0)
+            let temperature2Index = temperaturePicker.selectedRow(inComponent: 1)
+            temperatureTextField.text = "\(temperature[temperature1Index]).\(temperature2[temperature2Index])°F"
+//            temperatureTextField.text = "\(temperature[row])°F"
         default:
                 return
         }
